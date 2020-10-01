@@ -2,7 +2,7 @@ package org.chess;
 
 import java.util.Random;
 
-import static org.alina.chess.GameState.N;
+import static org.chess.GameState.N;
 
 public class Rook extends Figure {
 
