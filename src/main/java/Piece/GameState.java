@@ -1,4 +1,4 @@
-package org.chess;
+package Piece;
 
 import java.nio.file.Files;
 
@@ -9,7 +9,7 @@ public class GameState {
 
     static final int N = 8;
 
-    Figure[][] A;
+    public Figure[][] A;
 
     public GameState(){
 

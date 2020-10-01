@@ -1,5 +1,5 @@
-package org.chess;
-import static org.chess.GameState.N;
+package Piece;
+import static Piece.GameState.N;
 
 public class Pawn extends Figure {
 

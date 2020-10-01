@@ -1,11 +1,10 @@
-package org.chess;
+package Piece;
 
-import static org.alina.chess.GameState.N;
+import static Piece.GameState.N;
 
-public class Bishop extends Figure {
+public class Queen extends Figure {
 
-
-    public Bishop(int c){
+    public Queen(int c){
 
         color = c;
     }
@@ -61,12 +60,51 @@ public class Bishop extends Figure {
             return true;
         }
 
+        // right
+        if(y2==y && x2 > x){
+
+            for(int i = x+1; i <= x2; ++i){
+                if(gameState.at(i, y)!=null){
+                    return false;
+                }
+            }
+            return true;
+        }
+        // left
+        if(y2==y && x2 < x){
+
+            for(int i = x-1; i >= x2; --i){
+                if(gameState.at(i, y)!=null){
+                    return false;
+                }
+            }
+            return true;
+        }
+        // up
+        if(x==x2 && y2 > y){
+            for(int i = y+1; i <= y2; ++i){
+                if(gameState.at(x, i)!=null){
+                    return false;
+                }
+            }
+            return true;
+        }
+        // down
+        if(x==x2 && y2 < y){
+            for(int i = y-1; i >= y2; --i){
+                if(gameState.at(x, i)!=null){
+                    return false;
+                }
+            }
+            return true;
+        }
+
         return false;
     }
 
     @Override
     public char getChar() {
-        return 'B';
+        return 'Q';
     }
 }
 

@@ -1,6 +1,6 @@
-package org.chess;
+package Piece;
 
-import static org.chess.GameState.N;
+import static Piece.GameState.N;
 
 public class Knight extends Figure {
 

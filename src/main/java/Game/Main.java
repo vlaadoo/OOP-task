@@ -1,4 +1,6 @@
-package org.chess;
+package Game;
+
+import Piece.GameState;
 
 public class Main {
 

@@ -1,8 +1,6 @@
-package org.chess;
+package Piece;
 
-import java.util.Random;
-
-import static org.chess.GameState.N;
+import static Piece.GameState.N;
 
 public class Rook extends Figure {
 

@@ -1,4 +1,4 @@
-package org.chess;
+package Piece;
 
 public abstract class Figure {
 
