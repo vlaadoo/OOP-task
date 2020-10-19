@@ -1,17 +1,15 @@
 package Piece;
 
-import static Piece.GameState.N;
-
 public class King extends Figure {
 
-    public King(int c){
+    public King(GameState.GameColor c){
         color = c;
     }
 
     @Override
     public boolean checkMove(GameState gameState, int x, int y, int x2, int y2) {
 
-        if (x < 0 || x >= N || y < 0 || y >= N || x2 < 0 || x2 >= N || y2 < 0 || y2 >= N) {
+        if (x < 0 || x >= GameState.N || y < 0 || y >= GameState.N || x2 < 0 || x2 >= GameState.N || y2 < 0 || y2 >= GameState.N) {
             return false;
         }
 
@@ -22,6 +20,7 @@ public class King extends Figure {
         if(gameState.at(x2, y2)!=null){
             return false;
         }
+
 
 
         int dx_abs = Math.abs(x-x2);
@@ -36,8 +35,13 @@ public class King extends Figure {
     }
 
     @Override
+    public boolean checkEat(GameState gameState, int x, int y, int x2, int y2) {
+        // не может бить никого никогда
+        return false;
+    }
+
+    @Override
     public char getChar() {
-        return 'K';
+        return '♔';
     }
 }
-
