@@ -19,32 +19,34 @@ public class Queen extends AbstractPiece {
 
 	private static Boolean diagonalPath(int srcRow, int srcCol, int destRow,
 			int destCol) {
-		// returns true if the path is diagonal
-		// arguments are initial and final coordinates of move in chessboard
-		// array
-		// good for checking if a move is valid
+		/**
+		 * Проверка хода:
+		 * Возвращается true если задано движение по диагонали.
+		 * Аргументы - начальная и конечная координата хода на
+		 * шахматной доске
+		 */
 		return ((Math.abs(srcRow - destRow) == Math.abs(srcCol - destCol)));
 	}
 
 	private static Boolean straightPath(int srcRow, int srcCol, int destRow,
 			int destCol) {
-		// returns true if the path is straight
-		// arguments are initial and final coordinates of move in chessboard
-		// array
-		// good for checking if a move is valid
+		/**
+		 * Проверка хода:
+		 * Возвращается true если задано движение по прямой.
+		 * Аргументы - начальная и конечная координата хода на
+		 * шахматной доске
+		 */
 		return !((srcRow != destRow) && (srcCol != destCol));
 	}
 
 	@Override
 	public boolean isMoveValid(int srcRow, int srcCol, int destRow, int destCol) {
-		// TODO Auto-generated method stub
 		return (diagonalPath(srcRow, srcCol, destRow, destCol))
 				|| straightPath(srcRow, srcCol, destRow, destCol);
 	}
 
 	@Override
 	public int relativeValue() {
-		// TODO Auto-generated method stub
 		return 9;
 	}
 

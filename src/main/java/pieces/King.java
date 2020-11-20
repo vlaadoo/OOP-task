@@ -4,7 +4,6 @@ public class King extends AbstractPiece {
 
 	public King(boolean isWhite) {
 		super(isWhite);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -24,8 +23,7 @@ public class King extends AbstractPiece {
 
 	@Override
 	public int relativeValue() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Integer.MAX_VALUE;
 	}
 
 }

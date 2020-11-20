@@ -2,26 +2,26 @@ package pieces;
 
 public abstract class AbstractPiece {
 
-	boolean isWhite;
+    boolean isWhite;
 
-	// Ставится true если фигура белая. Иначе ставится false
-	public AbstractPiece(boolean isWhite) {
-		this.isWhite = isWhite;
-	}
-
-
-	 //Отрисовка фигуры в консоли
-	public abstract void draw();
+    // Ставится true если фигура белая. Иначе ставится false
+    public AbstractPiece(boolean isWhite) {
+        this.isWhite = isWhite;
+    }
 
 
-	/**
-	 * Проверка хода на правильность для конкретной фигуры. True - если правильный,
-	 * false - если неправильный
-	 */
-	public abstract boolean isMoveValid(int srcRow, int srcCol, int destRow,
-			int destCol);
+    //Отрисовка фигуры в консоли
+    public abstract void draw();
 
 
-	public abstract int relativeValue();
+    /**
+     * Проверка хода на правильность для конкретной фигуры. True - если правильный,
+     * false - если неправильный
+     */
+    public abstract boolean isMoveValid(int srcRow, int srcCol, int destRow,
+                                        int destCol);
+
+    // Ценность фигуры
+    public abstract int relativeValue();
 
 }
