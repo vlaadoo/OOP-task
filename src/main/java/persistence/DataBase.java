@@ -1,14 +1,8 @@
 package persistence;
 
-import pieces.AbstractPiece;
-import pieces.Chessboard;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Date;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBase {
 
@@ -22,6 +16,20 @@ public class DataBase {
             PreparedStatement statement = c.prepareStatement("insert into ChessGame(color) values (?)");
             statement.setString(1, winColor);
             statement.executeUpdate();
+        }
+    }
+
+    public void getAllGames(){
+        try (Connection c = getConnect()) {
+            PreparedStatement statement = c.prepareStatement("select GAME_ID, COLOR from CHESSGAME");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("GAME_ID");
+                String color = rs.getString("COLOR");
+                System.out.println("Игра: " + id + " Результат: " + color);
+            }
+        } catch (SQLException exception) {
+            throw new RuntimeException("Не удается получить данные из таблицы!", exception);
         }
     }
 }
