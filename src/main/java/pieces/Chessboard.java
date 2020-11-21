@@ -1,13 +1,13 @@
 package pieces;
 
-import java.util.Random;
 import java.util.Scanner;
 
 
 public class Chessboard {
 
     private Boolean gameRunning;
-    private AbstractPiece[][] chessboard = new AbstractPiece[numOfRowsAndCols][numOfRowsAndCols];// [row][column]
+    // Задается массив, который выступает шахматной доской
+    private AbstractPiece[][] chessboard = new AbstractPiece[numOfRowsAndCols][numOfRowsAndCols];
     Scanner user_input = new Scanner(System.in);
     private static final int numOfRowsAndCols = 8;
     private static int srcRow, srcCol, destRow, destCol;
@@ -18,11 +18,23 @@ public class Chessboard {
     // Строка с командой передвижения от пользователя
     String move;
 
-    /**
-     * Constructs a Chessboard object and populates it with pieces Starts a
-     * chess game running.
-     */
+    // Используется для перекрашивания текста в консоли
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
+
+
+    /*
+     * Создается шахматная доска и заполняется фигурами
+     * Также запускает шахматную партию через gameRunning = true
+     */
     public Chessboard() {
 
         initialiseBoard(chessboard);
@@ -30,13 +42,7 @@ public class Chessboard {
 
     }
 
-    /**
-     * This gets attribute Boolean gameRunning if this is false then you should
-     * stop calling move() and printBoard() and close the Chessboard()
-     *
-     * @return a Boolean that is false if the user wants to exit called
-     * gameRunning
-     */
+
     public Boolean getGameRunning() {
         return this.gameRunning;
     }
@@ -123,7 +129,7 @@ public class Chessboard {
 
     }
 
-    /**
+    /*
      * Печатает цифры 1-8 рядом со рядами и буквы a-h по столбцам
      * Выводит Юникод для каждой фигуры в консоль с помощью метода draw()
      * из класса соответсвующей фигуры.
@@ -148,7 +154,7 @@ public class Chessboard {
         }
     }
 
-    /**
+    /*
      * Допустимость хода проверяется в 2 этапа:
      * 1) Общие правила, которым должна следовать каждая фигура
      * 2) Специалньый isMoveValid() метод из класса фигуры, который проверяет правила
@@ -161,27 +167,27 @@ public class Chessboard {
 
         if (srcRow < 0 || srcRow > 7 || srcCol < 0 || srcCol > 7 || destRow < 0
                 || destRow > 7 || destCol < 0 || destCol > 7) {
-            System.out.println("Move is outside the board");
+            System.err.println("Ход начинается/заканчивается за границами доски!");
             return false;
         }
 
         // Проверка на то, что доска не пустая
         if (chessboard[srcRow][srcCol] == null) {
-            System.err.println("Origin is empty");
+            System.err.println("Доска пустая!");
             return false;
         }
 
         // Проверка на выбор фигуры (чтобы белые не ходили черными фигурами
         if ((chessboard[srcRow][srcCol].isWhite && !whitesTurnToMove)
                 || (!chessboard[srcRow][srcCol].isWhite && whitesTurnToMove)) {
-            System.err.println("It's not your turn");
+            System.err.println("Ходит другой цвет фигур!");
             return false;
         }
 
         // Возвращает false, если заданное передвижение не соотвествует фигуре
         if (!chessboard[srcRow][srcCol].isMoveValid(srcRow, srcCol, destRow,
                 destCol)) {
-            System.err.println("This piece doesn't move like that");
+            System.err.println("Данная фигура не может ходить таким образом!");
             return false;
         }
 
@@ -195,7 +201,7 @@ public class Chessboard {
         // не проходила сквозь другую белую фигуру
         if (chessboard[srcRow][srcCol].isWhite
                 && chessboard[destRow][destCol].isWhite) {
-            System.err.println("White cannot land on white");
+            System.err.println("Белая фигура не могут заканчивать ход на другой белой фигуре!");
             return false;
         }
 
@@ -203,7 +209,7 @@ public class Chessboard {
         // не проходила сквозь другую черную фигуру
         if (!chessboard[srcRow][srcCol].isWhite
                 && !chessboard[destRow][destCol].isWhite) {
-            System.err.println("Black cannot land on black");
+            System.err.println("Черная фигура не может заканчивать ход на другой черной фигуре!");
             return false;
         }
 
@@ -211,10 +217,8 @@ public class Chessboard {
 
     }
 
-    /**
-     * A private method called to update the score of whoever's turn it is after
-     * they take an opposing piece
-     */
+
+    // Метод для обновления счета после того, как будет совершен ход
     private void updateScore() {
         if (chessboard[destRow][destCol] == null) {
             return;
@@ -238,47 +242,60 @@ public class Chessboard {
     public void move() {
 
         System.out
-                .println("___________________________________________________\n"
-                        + "Score: White "
+                .println("———————————————————————————————————————————————————\n"
+                        + "Счет: Белые "
                         + whiteScore
                         + " | "
                         + blackScore
-                        + " Black");
+                        + " Черные");
 
         if (invalidMove) {
-            System.err.println("Move is invalid. Please try again:");
+            System.err.println("Неправильный ход! Введите корректный ход:\n");
             invalidMove = false;
         } else if (whitesTurnToMove) {
             System.out
-                    .println("___________________________________________________\n"
-                            + "White's turn to move\n"
-                            + "___________________________________________________\n");
+                    .println("———————————————————————————————————————————————————\n"
+                            + "Ход белых\n"
+                            + "———————————————————————————————————————————————————");
         } else {
             System.out
-                    .println("___________________________________________________\n"
-                            + "Black's turn to move\n"
-                            + "___________________________________________________\n");
+                    .println("———————————————————————————————————————————————————\n"
+                            + "Ход черных\n"
+                            + "———————————————————————————————————————————————————");
         }
 
+//        System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
+        System.out.println(ANSI_WHITE + "Если захотите завершить игру, тогда напишите 'exit'" + ANSI_RESET);
+        System.out.print("Введите ход " + ANSI_BLUE + "(например b2 - b4): " + ANSI_RESET);
         move = user_input.nextLine();
 
         if (move.equalsIgnoreCase("exit")) {
-            gameRunning = false;
-            System.out.println("Thanks for playing.");
+            System.out.println("Вы уверены, что хотите завершить игру? " + ANSI_WHITE + "(y/n)" + ANSI_RESET);
+            move = user_input.nextLine();
+            if (move.equalsIgnoreCase("y")) {
+                System.out.println(ANSI_YELLOW + "Приходите еще!");
+                gameRunning = false;
+            } else {
+                System.out.println("Продолжение игры!");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return;
+            }
+
             return;
         }
 
-        // convert to lower case
         String lowerCase = move.toLowerCase();
-        // parse move string into components
         String[] components = lowerCase.split(" ");
 
-        // if you assume that move is "e1 to e5" then
-        // components[0].chartAt(0) = 'e'
-        // components [0].charAt (1) = '1'
-
-        // use chars in components to set the array coordinates of the
-        // move origin and move destination
+        /*
+         * Если перемещение фигуры в виде "b2 - b4" тогда
+         * components[0].chartAt(0) = 'b'
+         * components [0].charAt (1) = '2'
+         */
 
         srcRow = 7 - (components[0].charAt(1) - '1');
         srcCol = components[0].charAt(0) - 'a';
@@ -287,9 +304,7 @@ public class Chessboard {
 
         if (moveValid()) {
             updateScore();
-            // put piece in destination
             chessboard[destRow][destCol] = chessboard[srcRow][srcCol];
-            // empty the origin of the move
             chessboard[srcRow][srcCol] = null;
             whitesTurnToMove = !whitesTurnToMove;
         } else {
