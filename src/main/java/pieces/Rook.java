@@ -7,6 +7,11 @@ public class Rook extends AbstractPiece {
 	}
 
 	@Override
+	public String pieceName() {
+		return "Rook";
+	}
+
+	@Override
 	public void draw() {
 		if (isWhite){
 			System.out.print("\u265C");
@@ -18,7 +23,7 @@ public class Rook extends AbstractPiece {
 	
 	private static Boolean straightPath(int srcRow, int srcCol,
 			int destRow, int destCol) {
-		/**
+		/*
 		 * Проверка хода:
 		 * Возвращается true если задано движение по прямой.
 		 * Аргументы - начальная и конечная координата хода на

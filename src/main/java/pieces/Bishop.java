@@ -7,6 +7,11 @@ public class Bishop extends AbstractPiece {
 	}
 
 	@Override
+	public String pieceName() {
+		return "Bishop";
+	}
+
+	@Override
 	public void draw() {
 		if (isWhite) {
 			System.out.print("\u265D");
@@ -17,7 +22,7 @@ public class Bishop extends AbstractPiece {
 
 	private static Boolean diagonalPath(int srcRow, int srcCol,
 			int destRow, int destCol) {
-		/**
+		/*
 		 * Проверка хода:
 		 * Возвращается true если задано движение по диагонали.
 		 * Аргументы - начальная и конечная координата хода на
@@ -36,5 +41,6 @@ public class Bishop extends AbstractPiece {
 	public int relativeValue() {
 		return 3;
 	}
+
 
 }

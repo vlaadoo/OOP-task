@@ -8,6 +8,11 @@ public class Knight extends AbstractPiece {
 			}
 
 	@Override
+	public String pieceName() {
+		return "Knight";
+	}
+
+	@Override
 	public void draw() {
 		if (isWhite){
 			System.out.print("\u265E");
@@ -19,7 +24,7 @@ public class Knight extends AbstractPiece {
 	
 	private static Boolean lShapedPath(int srcRow, int srcCol,
 			int destRow, int destCol) {
-		/**
+		/*
 		 * Проверка хода:
 		 * Возвращается true если движение имеет L-образный
 		 * вид. Аргументы - начальная и конечная координата

@@ -7,6 +7,12 @@ public class Queen extends AbstractPiece {
 		
 		}
 
+
+	@Override
+	public String pieceName() {
+		return "Queen";
+	}
+
 	@Override
 	public void draw() {
 		if (isWhite){
@@ -19,7 +25,7 @@ public class Queen extends AbstractPiece {
 
 	private static Boolean diagonalPath(int srcRow, int srcCol, int destRow,
 			int destCol) {
-		/**
+		/*
 		 * Проверка хода:
 		 * Возвращается true если задано движение по диагонали.
 		 * Аргументы - начальная и конечная координата хода на
@@ -30,7 +36,7 @@ public class Queen extends AbstractPiece {
 
 	private static Boolean straightPath(int srcRow, int srcCol, int destRow,
 			int destCol) {
-		/**
+		/*
 		 * Проверка хода:
 		 * Возвращается true если задано движение по прямой.
 		 * Аргументы - начальная и конечная координата хода на

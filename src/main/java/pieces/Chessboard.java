@@ -1,5 +1,8 @@
 package pieces;
 
+import persistence.DataBase;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 
@@ -17,29 +20,36 @@ public class Chessboard {
     private static Boolean invalidMove = false;
     // Строка с командой передвижения от пользователя
     String move;
+    private DataBase database = new DataBase();
+    private static String delimeterLine = "———————————————————————————————————————————————————\n";
 
-    // Используется для перекрашивания текста в консоли
+    // Используется для изменения цвета текста при выводе
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_WHITE = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
-
-
+    public static final String ANSI_BLACK = "\u001B[37m";
+    // Используется для цвета фона при выводе
+    public static final String ANSI_WHITEBG = "\u001B[40m";
+    public static final String ANSI_REDBG = "\u001B[41m";
+    public static final String ANSI_GREENBG = "\u001B[42m";
+    public static final String ANSI_YELLOWBG = "\u001B[43m";
+    public static final String ANSI_BLUEBG = "\u001B[44m";
+    public static final String ANSI_PURPLEBG = "\u001B[45m";
+    public static final String ANSI_CYANBG = "\u001B[46m";
+    public static final String ANSI_BLACKBG = "\u001B[47m";
 
     /*
      * Создается шахматная доска и заполняется фигурами
      * Также запускает шахматную партию через gameRunning = true
      */
     public Chessboard() {
-
         initialiseBoard(chessboard);
         gameRunning = true;
-
     }
 
 
@@ -47,12 +57,7 @@ public class Chessboard {
         return this.gameRunning;
     }
 
-    /**
-     * Populates the chessboard of AbstractPiece with the correct pieces and
-     * randomly assigns whether white or black moves first
-     *
-     * @param chessboard
-     */
+
     private static void initialiseBoard(AbstractPiece[][] chessboard) {
         // шахматаная доска с фигурами из матрицы 8x8
         // на рядах [0] и [1] черные фигуры
@@ -191,8 +196,8 @@ public class Chessboard {
             return false;
         }
 
-        // this statement stops the statement for checking if white lands on
-        // white from performing isWhite() on a null space
+        // Останавливает проверку, чтобы isWhite() не проверялся
+        // на пустой доске
         if (chessboard[destRow][destCol] == null) {
             return true;
         }
@@ -231,54 +236,66 @@ public class Chessboard {
         }
     }
 
-    /**
-     * Take user input for the instructions for move in the form
-     * "start coords to destination coords", e.g. "d2 to d3" and converts this
-     * string to array coordinates for the Chessboard. Checks if the move is
-     * valid using moveValid(). If valid moves piece to destination on
-     * Chessboard and updates score with updateScore(). If invalid prints error
-     * message and recursively calls itself.
-     */
-    public void move() {
 
-        System.out
-                .println("———————————————————————————————————————————————————\n"
-                        + "Счет: Белые "
-                        + whiteScore
-                        + " | "
-                        + blackScore
-                        + " Черные");
+    /*
+     * Принимает ввод пользователя для движения фигуры в виде
+     * "начальная и конечная координаты", например "b2 - b4" и
+     * преобразует эту строку в массив координат для шахматной доски.
+     * Проверяет, допустимо ли перемещение, используя moveValid()
+     * Если допустимо - передвигает фигуру в конечную координату и обновляет
+     * счет с помощью updateScore(). Если перемещение недопустимо, тогда
+     * выводит ошибку и вызывает сам себя для повторного ввода.
+     */
+
+    public void move() throws SQLException {
+
+        // Проверка победы одного из цветов
+        if (blackScore > 10000 || whiteScore > 10000) {
+            System.out.println(ANSI_YELLOW + "Игра окончена" + ANSI_RESET);
+            if (whiteScore > 10000) {
+                System.out.println(ANSI_CYAN + "Победа белых!" + ANSI_RESET);
+                database.saveToDb("Белые победили!");
+            } else {
+                System.out.println(ANSI_CYAN + "Победа черных!" + ANSI_RESET);
+                database.saveToDb("Черные победили!");
+            }
+            System.exit(0);
+        }
+
+        System.out.println(delimeterLine
+                + "Счет: Белые "
+                + whiteScore
+                + " | "
+                + blackScore
+                + " Черные");
 
         if (invalidMove) {
             System.err.println("Неправильный ход! Введите корректный ход:\n");
             invalidMove = false;
         } else if (whitesTurnToMove) {
-            System.out
-                    .println("———————————————————————————————————————————————————\n"
-                            + "Ход белых\n"
-                            + "———————————————————————————————————————————————————");
+            System.out.print(delimeterLine
+                    + "Ход белых\n"
+                    + delimeterLine);
         } else {
-            System.out
-                    .println("———————————————————————————————————————————————————\n"
-                            + "Ход черных\n"
-                            + "———————————————————————————————————————————————————");
+            System.out.print(delimeterLine
+                    + "Ход черных\n"
+                    + delimeterLine);
         }
 
-//        System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
-        System.out.println(ANSI_WHITE + "Если захотите завершить игру, тогда напишите 'exit'" + ANSI_RESET);
-        System.out.print("Введите ход " + ANSI_BLUE + "(например b2 - b4): " + ANSI_RESET);
+        System.out.println(ANSI_BLACK + "Если хотите завершить игру, тогда напишите 'exit'" + ANSI_RESET);
+        System.out.print("Введите ход " + ANSI_BLUE + "(в формате b2-b4) " + ANSI_RESET + ": ");
         move = user_input.nextLine();
 
         if (move.equalsIgnoreCase("exit")) {
-            System.out.println("Вы уверены, что хотите завершить игру? " + ANSI_WHITE + "(y/n)" + ANSI_RESET);
+            System.out.println(ANSI_BLACKBG + " Вы уверены, что хотите завершить игру? (y/n) " + ANSI_RESET);
             move = user_input.nextLine();
             if (move.equalsIgnoreCase("y")) {
-                System.out.println(ANSI_YELLOW + "Приходите еще!");
+                System.out.print(ANSI_YELLOW + " Игра завершена! ");
                 gameRunning = false;
             } else {
-                System.out.println("Продолжение игры!");
+                System.out.println(ANSI_YELLOW + " Игра продолжается! " + ANSI_RESET);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(1500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -289,18 +306,18 @@ public class Chessboard {
         }
 
         String lowerCase = move.toLowerCase();
-        String[] components = lowerCase.split(" ");
+        String[] components = lowerCase.split("-");
 
         /*
-         * Если перемещение фигуры в виде "b2 - b4" тогда
+         * Если перемещение фигуры в виде "b2-b4" тогда
          * components[0].chartAt(0) = 'b'
          * components [0].charAt (1) = '2'
          */
 
         srcRow = 7 - (components[0].charAt(1) - '1');
         srcCol = components[0].charAt(0) - 'a';
-        destRow = 7 - (components[2].charAt(1) - '1');
-        destCol = components[2].charAt(0) - 'a';
+        destRow = 7 - (components[1].charAt(1) - '1');
+        destCol = components[1].charAt(0) - 'a';
 
         if (moveValid()) {
             updateScore();

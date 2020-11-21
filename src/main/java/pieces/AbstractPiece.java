@@ -24,4 +24,6 @@ public abstract class AbstractPiece {
     // Ценность фигуры
     public abstract int relativeValue();
 
+    public abstract String pieceName();
+
 }

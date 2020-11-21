@@ -7,6 +7,11 @@ public class Pawn extends AbstractPiece {
     }
 
     @Override
+    public String pieceName() {
+        return "Pawn";
+    }
+
+    @Override
     public void draw() {
         if (this.isWhite) {
             System.out.print("\u265F");
@@ -20,7 +25,7 @@ public class Pawn extends AbstractPiece {
     @Override
     public boolean isMoveValid(int srcRow, int srcCol, int destRow, int destCol) {
 
-        /**
+        /*
          * Проверка хода:
          * Движение пешки вперед на 1 или 2 клетки
          * или уничтожает фигуру черного цвета, тогда

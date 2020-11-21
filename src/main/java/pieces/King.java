@@ -7,6 +7,11 @@ public class King extends AbstractPiece {
 	}
 
 	@Override
+	public String pieceName() {
+		return "King";
+	}
+
+	@Override
 	public void draw() {
 		if (isWhite) {
 			System.out.print("\u265A");
@@ -23,7 +28,7 @@ public class King extends AbstractPiece {
 
 	@Override
 	public int relativeValue() {
-		return Integer.MAX_VALUE;
+		return 1000000;
 	}
 
 }
