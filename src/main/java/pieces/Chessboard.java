@@ -5,6 +5,8 @@ import persistence.DataBase;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static game.Colors.*;
+
 
 public class Chessboard {
 
@@ -23,25 +25,7 @@ public class Chessboard {
     private DataBase database = new DataBase();
     private static String delimeterLine = "———————————————————————————————————————————————————\n";
 
-    // Используется для изменения цвета текста при выводе
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_WHITE = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_BLACK = "\u001B[37m";
-    // Используется для цвета фона при выводе
-    public static final String ANSI_WHITEBG = "\u001B[40m";
-    public static final String ANSI_REDBG = "\u001B[41m";
-    public static final String ANSI_GREENBG = "\u001B[42m";
-    public static final String ANSI_YELLOWBG = "\u001B[43m";
-    public static final String ANSI_BLUEBG = "\u001B[44m";
-    public static final String ANSI_PURPLEBG = "\u001B[45m";
-    public static final String ANSI_CYANBG = "\u001B[46m";
-    public static final String ANSI_BLACKBG = "\u001B[47m";
+
 
     /*
      * Создается шахматная доска и заполняется фигурами
@@ -251,12 +235,12 @@ public class Chessboard {
 
         // Проверка победы одного из цветов
         if (blackScore > 10000 || whiteScore > 10000) {
-            System.out.println(ANSI_YELLOW + "Игра окончена" + ANSI_RESET);
+            System.out.println(F_YELLOW + "Игра окончена" + F_RESET);
             if (whiteScore > 10000) {
-                System.out.println(ANSI_CYAN + "Победа белых!" + ANSI_RESET);
+                System.out.println(F_CYAN + "Победа белых!" + F_RESET);
                 database.saveToDb("Белые победили!");
             } else {
-                System.out.println(ANSI_CYAN + "Победа черных!" + ANSI_RESET);
+                System.out.println(F_CYAN + "Победа черных!" + F_RESET);
                 database.saveToDb("Черные победили!");
             }
             System.exit(0);
@@ -282,18 +266,18 @@ public class Chessboard {
                     + delimeterLine);
         }
 
-        System.out.println(ANSI_BLACK + "Если хотите завершить игру, тогда напишите 'exit'" + ANSI_RESET);
-        System.out.print("Введите ход " + ANSI_BLUE + "(в формате b2-b4) " + ANSI_RESET + ": ");
+        System.out.println(F_BLACK + "Если хотите завершить игру, тогда напишите 'exit'" + F_RESET);
+        System.out.print("Введите ход " + F_BLUE + "(в формате b2-b4) " + F_RESET + ": ");
         move = user_input.nextLine();
 
         if (move.equalsIgnoreCase("exit")) {
-            System.out.println(ANSI_BLACKBG + " Вы уверены, что хотите завершить игру? (y/n) " + ANSI_RESET);
+            System.out.println(BG_BLACK + " Вы уверены, что хотите завершить игру? (y/n) " + F_RESET);
             move = user_input.nextLine();
             if (move.equalsIgnoreCase("y")) {
-                System.out.print(ANSI_YELLOW + " Игра завершена! ");
+                System.out.print(F_YELLOW + " Игра завершена! \n" + F_RESET);
                 gameRunning = false;
             } else {
-                System.out.println(ANSI_YELLOW + " Игра продолжается! " + ANSI_RESET);
+                System.out.println(F_YELLOW + " Игра продолжается! " + F_RESET);
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException e) {
