@@ -3,6 +3,7 @@ package game;
 import persistence.DataBase;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import static game.Colors.*;
@@ -11,6 +12,7 @@ public class DeleteMenu {
     public static void deleteMenu() throws SQLException {
         Scanner del_menu = new Scanner(System.in);
         DataBase db = new DataBase();
+        List<String> results;
 
         System.out.println(BG_BLUE + F_BLACK + " Что вы хотите удалить? " +
                 F_RESET + "\n" +
@@ -22,7 +24,10 @@ public class DeleteMenu {
         int ch = del_menu.nextInt();
         switch (ch) {
             case 1:
-                db.getAllGames();
+                results = db.getAllGames();
+                for (String result : results) {
+                    System.out.println(result);
+                }
                 System.out.print(BG_BLACK + " Какую строку удалить? " + F_RESET + " ");
                 int row_id = del_menu.nextInt();
                 db.deleteFromDb(row_id);

@@ -10,9 +10,10 @@ import static game.Colors.*;
 
 public class Chessboard {
 
+    private final DataBase database = new DataBase();
     private Boolean gameRunning;
     // Задается массив, который выступает шахматной доской
-    private AbstractPiece[][] chessboard = new AbstractPiece[numOfRowsAndCols][numOfRowsAndCols];
+    private final AbstractPiece[][] chessboard = new AbstractPiece[numOfRowsAndCols][numOfRowsAndCols];
     Scanner user_input = new Scanner(System.in);
     private static final int numOfRowsAndCols = 8;
     private static int srcRow, srcCol, destRow, destCol;
@@ -22,8 +23,7 @@ public class Chessboard {
     private static Boolean invalidMove = false;
     // Строка с командой передвижения от пользователя
     String move;
-    private DataBase database = new DataBase();
-    private static String delimeterLine = "———————————————————————————————————————————————————\n";
+    private static final String delimiterLine = "———————————————————————————————————————————————————\n";
 
 
 
@@ -46,6 +46,9 @@ public class Chessboard {
         // шахматаная доска с фигурами из матрицы 8x8
         // на рядах [0] и [1] черные фигуры
         // на рядах [6] и [7] белые фигуры
+
+        // Назначает первый ход белым
+        whitesTurnToMove = Boolean.TRUE;
 
         for (int row = 0; row < chessboard.length; row++) {
             for (int col = 0; col < chessboard[row].length; col++) {
@@ -112,9 +115,6 @@ public class Chessboard {
                 }
             }
         }
-
-        // Назначает первый ход белым
-        whitesTurnToMove = Boolean.TRUE;
 
     }
 
@@ -246,7 +246,7 @@ public class Chessboard {
             System.exit(0);
         }
 
-        System.out.println(delimeterLine
+        System.out.println(delimiterLine
                 + "Счет: Белые "
                 + whiteScore
                 + " | "
@@ -257,13 +257,13 @@ public class Chessboard {
             System.err.println("Неправильный ход! Введите корректный ход:\n");
             invalidMove = false;
         } else if (whitesTurnToMove) {
-            System.out.print(delimeterLine
+            System.out.print(delimiterLine
                     + "Ход белых\n"
-                    + delimeterLine);
+                    + delimiterLine);
         } else {
-            System.out.print(delimeterLine
+            System.out.print(delimiterLine
                     + "Ход черных\n"
-                    + delimeterLine);
+                    + delimiterLine);
         }
 
         System.out.println(F_BLACK + "Если хотите завершить игру, тогда напишите 'exit'" + F_RESET);

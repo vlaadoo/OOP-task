@@ -7,6 +7,8 @@ import static game.Colors.*;
 import static game.DeleteMenu.deleteMenu;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StartMenu {
@@ -15,6 +17,7 @@ public class StartMenu {
         Chessboard myChessboard = new Chessboard();
         DataBase db = new DataBase();
         Scanner menu_input = new Scanner(System.in);
+        List<String> results;
 
         // Стартовое меню
         System.out.println(BG_GREEN + F_BLACK +
@@ -44,7 +47,13 @@ public class StartMenu {
 
             case 2:
                 System.out.println(BG_BLUE + " Результаты игр: " + F_RESET);
-                db.getAllGames();
+                results = db.getAllGames();
+                if (results.size() == 0) {
+                    System.out.println("В таблице нет игр");
+                }
+                for (String result : results) {
+                    System.out.println(result);
+                }
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException e) {
@@ -82,4 +91,3 @@ public class StartMenu {
         startMenu();
     }
 }
-

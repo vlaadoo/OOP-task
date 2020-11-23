@@ -7,7 +7,7 @@ import java.util.List;
 public class DataBase {
 
 
-    private Connection getConnect() throws SQLException {
+    public Connection getConnect() throws SQLException {
         return DriverManager.getConnection("jdbc:h2:tcp://localhost:1521/chess", "", "");
     }
 
@@ -19,18 +19,17 @@ public class DataBase {
         }
     }
 
-    public void getAllGames() {
+    public List<String> getAllGames() {
+        List<String> result = new ArrayList<>();
         try (Connection c = getConnect()) {
             PreparedStatement statement = c.prepareStatement("select GAME_ID, COLOR from CHESSGAME");
             ResultSet rs = statement.executeQuery();
-            if (rs == null) {
-                System.out.println("В таблице нет игр!");
-            }
             while (rs.next()) {
                 int id = rs.getInt("GAME_ID");
                 String color = rs.getString("COLOR");
-                System.out.println("Игра: " + id + " Результат: " + color);
+                result.add("Игра: " + id + " Результат: " + color);
             }
+            return result;
         } catch (SQLException exception) {
             throw new RuntimeException("Не удается получить данные из таблицы!", exception);
         }
