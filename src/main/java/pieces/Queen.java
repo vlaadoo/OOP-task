@@ -4,7 +4,6 @@ public class Queen extends AbstractPiece {
 
 	public Queen(boolean isWhite) {
 		super(isWhite);
-		
 		}
 
 
@@ -23,7 +22,7 @@ public class Queen extends AbstractPiece {
 		}
 	}
 
-	private static Boolean diagonalPath(int srcRow, int srcCol, int destRow,
+	private Boolean diagonalPath(int srcRow, int srcCol, int destRow,
 			int destCol) {
 		/*
 		 * Проверка хода:
@@ -34,7 +33,7 @@ public class Queen extends AbstractPiece {
 		return ((Math.abs(srcRow - destRow) == Math.abs(srcCol - destCol)));
 	}
 
-	private static Boolean straightPath(int srcRow, int srcCol, int destRow,
+	private Boolean straightPath(int srcRow, int srcCol, int destRow,
 			int destCol) {
 		/*
 		 * Проверка хода:

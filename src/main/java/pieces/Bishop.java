@@ -20,7 +20,7 @@ public class Bishop extends AbstractPiece {
 		}
 	}
 
-	private static Boolean diagonalPath(int srcRow, int srcCol,
+	private Boolean diagonalPath(int srcRow, int srcCol,
 			int destRow, int destCol) {
 		/*
 		 * Проверка хода:

@@ -17,13 +17,13 @@ public class Chessboard {
     Scanner user_input = new Scanner(System.in);
     private static final int numOfRowsAndCols = 8;
     private static int srcRow, srcCol, destRow, destCol;
-    private static int whiteScore = 0, blackScore = 0;
-    private static Boolean whitesTurnToMove;
+    private int whiteScore = 0, blackScore = 0;
+    private Boolean whitesTurnToMove;
     // Устанавливается значение true если шаг неправильный. Просит повторный ввод шага в move()
-    private static Boolean invalidMove = false;
+    private Boolean invalidMove = false;
     // Строка с командой передвижения от пользователя
     String move;
-    private static final String delimiterLine = "———————————————————————————————————————————————————\n";
+    private final String delimiterLine = "———————————————————————————————————————————————————\n";
 
 
 
@@ -42,7 +42,7 @@ public class Chessboard {
     }
 
 
-    private static void initialiseBoard(AbstractPiece[][] chessboard) {
+    private void initialiseBoard(AbstractPiece[][] chessboard) {
         // шахматаная доска с фигурами из матрицы 8x8
         // на рядах [0] и [1] черные фигуры
         // на рядах [6] и [7] белые фигуры
@@ -125,8 +125,7 @@ public class Chessboard {
      */
     public void printBoard() {
 
-        // Берет массив 8x8 в качестве шахматной доски
-
+        // Берется массив 8x8 в качестве шахматной доски
         System.out.println("\ta\tb\tc\td\te\tf\tg\th");
         for (int row = 0; row < chessboard.length; row++) {
             System.out.print(8 - row + ".\t");
@@ -153,7 +152,6 @@ public class Chessboard {
     private boolean moveValid() {
 
         // Выдает ошибку, если ход начинается и/или заканчивается за границами доски
-
         if (srcRow < 0 || srcRow > 7 || srcCol < 0 || srcCol > 7 || destRow < 0
                 || destRow > 7 || destCol < 0 || destCol > 7) {
             System.err.println("Ход начинается/заканчивается за границами доски!");
@@ -246,28 +244,40 @@ public class Chessboard {
             System.exit(0);
         }
 
-        System.out.println(delimiterLine
-                + "Счет: Белые "
-                + whiteScore
-                + " | "
-                + blackScore
-                + " Черные");
 
         if (invalidMove) {
             System.err.println("Неправильный ход! Введите корректный ход:\n");
             invalidMove = false;
-        } else if (whitesTurnToMove) {
+            if (whitesTurnToMove) {
+                System.out.print(delimiterLine
+                        + "Ход белых\n");
+            } else {
+                System.out.print(delimiterLine
+                        + "Ход черных\n");
+            }
+        }
+        else if (whitesTurnToMove) {
             System.out.print(delimiterLine
                     + "Ход белых\n"
                     + delimiterLine);
+            System.out.println("Счет: Белые "
+                    + whiteScore
+                    + " | "
+                    + blackScore
+                    + " Черные");
         } else {
             System.out.print(delimiterLine
                     + "Ход черных\n"
                     + delimiterLine);
+            System.out.println("Счет: Белые "
+                    + whiteScore
+                    + " | "
+                    + blackScore
+                    + " Черные");
         }
 
         System.out.println(F_BLACK + "Если хотите завершить игру, тогда напишите 'exit'" + F_RESET);
-        System.out.print("Введите ход " + F_BLUE + "(в формате b2-b4) " + F_RESET + ": ");
+        System.out.print("Введите ход " + F_BLUE + "(в формате a2-a3) " + F_RESET + ": ");
         move = user_input.nextLine();
 
         if (move.equalsIgnoreCase("exit")) {

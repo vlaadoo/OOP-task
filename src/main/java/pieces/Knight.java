@@ -22,7 +22,7 @@ public class Knight extends AbstractPiece {
 		}		
 	}
 	
-	private static Boolean lShapedPath(int srcRow, int srcCol,
+	private Boolean lShapedPath(int srcRow, int srcCol,
 			int destRow, int destCol) {
 		/*
 		 * Проверка хода:

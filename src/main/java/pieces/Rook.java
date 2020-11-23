@@ -21,7 +21,7 @@ public class Rook extends AbstractPiece {
 		}		
 	}
 	
-	private static Boolean straightPath(int srcRow, int srcCol,
+	private Boolean straightPath(int srcRow, int srcCol,
 			int destRow, int destCol) {
 		/*
 		 * Проверка хода:

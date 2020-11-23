@@ -8,22 +8,22 @@ public class dbTest {
     DataBase db = new DataBase();
 
     @Test
-    public void dbConnect() throws SQLException {
+    public void dbConTest() throws SQLException {
         DriverManager.getConnection("jdbc:h2:tcp://localhost:1521/chess", "", "");
     }
 
     @Test
-    public void gamesFetch() {
+    public void gamesFetchTest() {
         final List<String> result = db.getAllGames();
     }
 
     @Test
-    public void addToDb() throws SQLException {
+    public void addToDbTest() throws SQLException {
         db.saveToDb("Test");
     }
 
     @Test
-    public void deleteFromDb() throws SQLException {
+    public void deleteFromDbTest() throws SQLException {
         int maxId = 0;
         try (Connection c = db.getConnect()) {
             PreparedStatement st = c.prepareStatement("select max(GAME_ID) from CHESSGAME");
