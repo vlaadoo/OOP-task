@@ -13,4 +13,9 @@ public class GameTest {
     public void gameStartTest() throws SQLException {
         assertEquals(true, chessboard.getGameRunning());
     }
+
+    @Test
+    public void printBoardTest(){
+        chessboard.printBoard();
+    }
 }
