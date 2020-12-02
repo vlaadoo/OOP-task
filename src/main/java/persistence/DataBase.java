@@ -11,12 +11,15 @@ public class DataBase {
         return DriverManager.getConnection("jdbc:h2:tcp://localhost:1521/chess", "", "");
     }
 
+//    public void saveToDb(String winColor) throws SQLException {
+//        try (Connection c = getConnect()) {
+//            PreparedStatement statement = c.prepareStatement("insert into ChessGame(color) values (?)");
+//            statement.setString(1, winColor);
+//            statement.executeUpdate();
+//        }
+//    }
+
     public void saveToDb(String winColor) throws SQLException {
-        try (Connection c = getConnect()) {
-            PreparedStatement statement = c.prepareStatement("insert into ChessGame(color) values (?)");
-            statement.setString(1, winColor);
-            statement.executeUpdate();
-        }
     }
 
     public List<String> getAllGames() {
