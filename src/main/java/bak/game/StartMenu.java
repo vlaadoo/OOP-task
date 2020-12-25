@@ -1,10 +1,9 @@
-package game;
+package bak.game;
 
 import persistence.DataBase;
-import pieces.*;
 
-import static game.Colors.*;
-import static game.DeleteMenu.deleteMenu;
+import static bak.game.Colors.*;
+import static bak.game.DeleteMenu.deleteMenu;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package game;
+package bak.game;
 
 public class Colors {
     // Используется для изменения цвета текста при выводе

@@ -1,4 +1,4 @@
-package pieces;
+package bak.pieces;
 
 public class King extends AbstractPiece {
 
@@ -8,7 +8,7 @@ public class King extends AbstractPiece {
 
 	@Override
 	public String pieceName() {
-		return "King";
+		return "pieces.King";
 	}
 
 	@Override

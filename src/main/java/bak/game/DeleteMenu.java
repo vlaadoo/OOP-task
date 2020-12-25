@@ -1,4 +1,4 @@
-package game;
+package bak.game;
 
 import persistence.DataBase;
 
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import static game.Colors.*;
+import static bak.game.Colors.*;
 
 public class DeleteMenu {
     public static void deleteMenu() throws SQLException {

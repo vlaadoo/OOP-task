@@ -1,4 +1,4 @@
-package pieces;
+package bak.pieces;
 
 public abstract class AbstractPiece {
 

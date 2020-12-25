@@ -1,4 +1,4 @@
-package game;
+package bak.game;
 
 import java.sql.SQLException;
 

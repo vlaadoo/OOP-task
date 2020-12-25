@@ -1,11 +1,11 @@
-package pieces;
+package bak.pieces;
 
 import persistence.DataBase;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static game.Colors.*;
+import static bak.game.Colors.*;
 
 
 public class Chessboard {
