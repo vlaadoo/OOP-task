@@ -1,5 +1,6 @@
 package GUI;
 
+import connect.Server;
 import logic.Board;
 import logic.Game;
 import persistence.DataBase;
@@ -130,6 +131,7 @@ public class GUI {
      */
     public void turnSwitchDisplay(String string) {
         setCurrTurn(string);
+        setSide(string);
         turn.setText("" + getCurrTurn());
     }
 
@@ -235,10 +237,6 @@ public class GUI {
 
     public void setCurrTurn(String currTurn) {
         this.currTurn = currTurn;
-    }
-
-    public Game getGame() {
-        return game;
     }
 
     public void setGame(Game game) {

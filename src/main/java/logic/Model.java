@@ -31,10 +31,8 @@ public class Model {
 		setBoard(new Board(custom));
 		setCommands(new Stack<Command>());
 	}
-	
-	/** Adds ActionListeners to all of the Squares
-	 * @param a the ActionListener to add
-	 */
+
+	// Добавляет ActionListener на все клетки
 	public void addActionListeners(ActionListener a) {
 		for(int x = 0; x < 8; x++) {
 			for(int y = 0; y < 8; y++) {
@@ -44,17 +42,13 @@ public class Model {
 		}
 	}
 
-	/** Moves the pieces.Piece from one point to another on the board, and creates a logic.Command object to be pushed onto the commands stack to be used for the undo function
-	 * @param from the origin of the piece to be moved
-	 * @param to the destination of the piece to be moved
-	 */
+	// Передвигает фигуру с одной точки в другую
 	public void move(Point from, Point to) {
-		//get the pieces for the undo function
 		Piece moved = getBoard().getSquare(from).getOccupier();
 		Piece taken = getBoard().getSquare(to).getOccupier();
 		Command command = new Command(moved, taken, new Point(from), new Point(to));
 		board.move(from, to);
-		commands.push(command);	//put the new data structure object into a stack
+		commands.push(command);
 	}
 
 	public Board getBoard() {

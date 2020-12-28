@@ -27,10 +27,6 @@ public abstract class Connectable {
 			ioException.printStackTrace();
 		}
 	}
-	
-	public Game getGame() {
-		return game;
-	}
 
 	public void setGame(Game game) {
 		this.game = game;
