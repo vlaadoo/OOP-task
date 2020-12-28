@@ -11,8 +11,8 @@ import java.util.List;
 
 public final class Rook extends Piece {
 	
-	public Rook(Square _occupying, String _color) {
-		super(_occupying, _color);
+	public Rook(Square occupying, String color) {
+		super(occupying, color);
 		
 		if(getColor() == "Белые") {
 			icon = new ImageIcon("images/whiterook.png");

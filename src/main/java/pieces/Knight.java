@@ -11,8 +11,8 @@ import java.util.List;
 public final class Knight extends Piece {
 	
 
-	public Knight(Square _occupying, String _color) {
-		super(_occupying, _color);
+	public Knight(Square occupying, String color) {
+		super(occupying, color);
 		
 		if(getColor() == "Белые") {
 			this.icon = new ImageIcon("images/whiteknight.png");

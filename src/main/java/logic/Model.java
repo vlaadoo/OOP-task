@@ -1,16 +1,11 @@
 package logic;
 
-import logic.Board;
-import logic.Command;
-import logic.Square;
-import pieces.Pawn;
 import pieces.Piece;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Stack;
 
-//TODO перевести
 public class Model {
 	
 	private Board board;

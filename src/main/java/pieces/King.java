@@ -10,8 +10,8 @@ import java.util.List;
 
 public final class King extends Piece {
 
-		public King(Square _occupying, String _color) {
-			super(_occupying, _color);
+		public King(Square occupying, String color) {
+			super(occupying, color);
 			
 			if(getColor() == "Белые") {
 				this.icon = new ImageIcon("images/whiteking.png");

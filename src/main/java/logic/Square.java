@@ -5,7 +5,6 @@ import pieces.Piece;
 import javax.swing.*;
 import java.awt.*;
 
-//TODO перевести
 public class Square extends JButton {
 
 	private Piece occupier;

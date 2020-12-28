@@ -7,7 +7,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO перевести
 public abstract class Piece {
     protected String color;
     protected Square occupying;

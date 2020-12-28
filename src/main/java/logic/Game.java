@@ -12,7 +12,6 @@ public class Game {
     private Controller controller;
     private Connectable connectable;
 
-//TODO перевести
     public Game(Connectable connectable) {
         model = new Model();
         setConnectable(connectable);

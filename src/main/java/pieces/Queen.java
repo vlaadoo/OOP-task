@@ -11,8 +11,8 @@ import java.util.List;
 
 public final class Queen extends Piece {
 	
-	public Queen(Square _occupying, String _color) {
-		super(_occupying, _color);
+	public Queen(Square occupying, String color) {
+		super(occupying, color);
 		
 		if(getColor() == "Белые") {
 			this.icon = new ImageIcon("images/whitequeen.png");

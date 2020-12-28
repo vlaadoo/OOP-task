@@ -8,11 +8,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO перевести
 public final class Pawn extends Piece {
 	
-	public Pawn(Square _occupying, String _color) {
-		super(_occupying, _color);
+	public Pawn(Square occupying, String color) {
+		super(occupying, color);
 		setMoved(false);
 		if(getColor() == "Белые") {
 			this.icon = new ImageIcon("images/whitepawn.png");

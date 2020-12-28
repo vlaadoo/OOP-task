@@ -9,8 +9,8 @@ import java.util.List;
 
 public final class Bishop extends Piece {
 
-    public Bishop(Square _occupying, String _color) {
-        super(_occupying, _color);
+    public Bishop(Square occupying, String color) {
+        super(occupying, color);
 
         if (getColor() == "Белые") {
             this.icon = new ImageIcon("images/whitebishop.png");
