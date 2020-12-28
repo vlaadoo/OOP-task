@@ -143,6 +143,7 @@ public class Controller implements ActionListener {
             gui.notifyCheckmate(turn); // передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
             resetBoard();
             gui.resetBoardPanel(getModel().getBoard());
+            System.out.println("результат в бд");
             return;
         }
 
