@@ -1,14 +1,12 @@
 package logic;
 
 import GUI.GUI;
-import connect.Server;
+import connect.Chess;
 import persistence.DataBase;
 
-import javax.sql.DataSource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.DataBuffer;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,6 +17,7 @@ public class Controller implements ActionListener {
     private Square selectedSquare;
     private String turn;
     private Game game;
+    private DataBase db = new DataBase();
 
 
     public Controller(Model model, GUI gui, Game game) {
@@ -45,6 +44,7 @@ public class Controller implements ActionListener {
             boolean restarted = gui.askRestart();
             if (restarted == true) {
                 game.sendPacket(null, true, false, false);
+                resetBoard();
             }
         }
         if (action_com == "exit") {
@@ -74,7 +74,7 @@ public class Controller implements ActionListener {
     public void isClicked(Square square) {
         if (getSelectedSquare() == null) {
             if (square.getOccupier() != null) {        // есть ли в данном квадрате фигура
-                if (checkProperTurn(square)) {        // совпадает ли цвет фигуры и текущего игрока
+                if (checkColorOfTurn(square)) {        // совпадает ли цвет фигуры и текущего игрока
                     select(square);
                 }
             }
@@ -96,14 +96,14 @@ public class Controller implements ActionListener {
      * Выделение выбранной клетки и всех возможных ходов
      */
     public void select(Square square) {
-        square.setBackground(Color.green);
+        square.setBackground(new Color(21, 190, 68));
 
         setSelectedSquare(square);    // определение выбранного квадрата
 
         List<Point> moves = square.getOccupier().getFilteredMoves();  // получение возможных ходов
 
         for (Point p : moves) {            // выделение возможных ходов
-            model.getBoard().getSquare(p).setBackground(Color.green);
+            model.getBoard().getSquare(p).setBackground(new Color(60, 234, 54));
             model.getBoard().getSquare(p).setHighlighted(true);
         }
     }
@@ -137,20 +137,22 @@ public class Controller implements ActionListener {
      * Провека наличия шаха, мата или пата с учетом стороны, которая ходит
      * При наличии чего-либо происходит уведомление игрока с помощью появления предупреждения
      */
-    //TODO заносить результат в бд
+    //TODO доделать бд и тесты
     public void testGameStatus(String turn) {
         if (model.getBoard().isCheckmate(turn)) { // если у игрока мат
-            gui.notifyCheckmate(turn); // передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
-            resetBoard();
-            gui.resetBoardPanel(getModel().getBoard());
-            System.out.println("результат в бд");
+            gui.notifyCheckmate(turn);// передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
+            gui.askRestart();
+            try {
+                db.saveWin(switchColor(turn) + " победили!");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             return;
         }
 
         if (model.getBoard().isStalemate(turn)) { // Если пат
             gui.notifyStalemate();
-            resetBoard();
-            gui.resetBoardPanel(getModel().getBoard());
+            gui.askRestart();
             return;
         }
 
@@ -166,7 +168,6 @@ public class Controller implements ActionListener {
     public void switchTurns() {
         if (this.getTurn() == "Белые") {
             this.setTurn("Черные");
-            Server.color = "Черные";
             gui.turnSwitchDisplay("Черные");  // смена текущей стороны, которая должна ходить
         } else if (this.getTurn() == "Черные") {
             this.setTurn("Белые");
@@ -177,8 +178,8 @@ public class Controller implements ActionListener {
     /*
      * Проверяет, имеет ли фигура на квадрате тот же цвет, что и текущий ход, что позволяет ее перемещать
      */
-    public boolean checkProperTurn(Square test) {
-        if ((test.getOccupier().getColor() == this.getTurn()) && (this.getTurn() == getGame().getConnectable().getColor())) {
+    public boolean checkColorOfTurn(Square test) {
+        if (test.getOccupier().getColor() == this.getTurn()) {
             return true;
         }
         return false;
@@ -218,5 +219,15 @@ public class Controller implements ActionListener {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public String switchColor(String turn){
+        if (turn == "Белые"){
+            turn = "Черные";
+        }
+        else {
+            turn = "Белые";
+        }
+        return turn;
     }
 }

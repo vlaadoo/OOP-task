@@ -1,6 +1,5 @@
 package logic;
 
-import persistence.DataBase;
 import pieces.*;
 
 import javax.swing.*;

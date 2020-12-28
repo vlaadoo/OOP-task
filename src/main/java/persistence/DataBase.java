@@ -14,9 +14,8 @@ public class DataBase {
 
     public void saveWin(String winColor) throws SQLException {
         try (Connection c = getConnect()) {
-            PreparedStatement statement = c.prepareStatement("insert into ChessGame(color, time ) values (?, ?)");
+            PreparedStatement statement = c.prepareStatement("insert into ChessGame(color) values (?)");
             statement.setString(1, winColor);
-            statement.setLong(2, time);
             statement.executeUpdate();
         }
     }

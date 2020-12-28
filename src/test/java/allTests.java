@@ -13,7 +13,6 @@ import org.junit.runners.Suite;
         QueenTest.class,
         RookTest.class,
         ModelTest.class,
-//        ConnectableTest.class
 })
 
 public class allTests {

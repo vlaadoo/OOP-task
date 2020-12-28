@@ -1,9 +1,7 @@
 package GUI;
 
-import connect.Server;
 import logic.Board;
 import logic.Game;
-import persistence.DataBase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -85,15 +83,8 @@ public class GUI {
         turnBox.add(turnTitle);
         turnBox.add(turn);
 
-        sideBox = new JPanel();
-        sideTitle = new JLabel("Ваши цвет фигур: ");
-        sideText = new JLabel("" + getSide());
-        sideBox.add(sideTitle);
-        sideBox.add(sideText);
-
         infoBox.add(scoreBox, BorderLayout.SOUTH);
         infoBox.add(turnBox, BorderLayout.NORTH);
-        infoBox.add(sideBox, BorderLayout.CENTER);
 
         mainPanel.add(boardPanel, BorderLayout.CENTER);
         mainPanel.add(infoBox, BorderLayout.EAST);
@@ -103,7 +94,9 @@ public class GUI {
 
     // Появляется уведомление при проигрыше одной из сторон
     public void notifyCheckmate(String turn) {
-        JOptionPane.showMessageDialog(frame, "Шах и мат! " + turn + " проиграли");
+        turnTitle.setText("");
+        turnSwitchDisplay("Шах и мат! " + turn + " проиграли!" );
+        JOptionPane.showMessageDialog(frame, "Шах и мат! " + turn + " проиграли!");
         if (turn == "Черные") {
             incrementWhiteScore();
         } else if (turn == "Белые") {
@@ -113,6 +106,8 @@ public class GUI {
 
     // Если нет возможности ходить
     public void notifyStalemate() {
+        turnTitle.setText("");
+        turnSwitchDisplay("Пат!");
         JOptionPane.showMessageDialog(frame, "Пат! Игра закончилась ничьей!");
     }
 
@@ -131,7 +126,6 @@ public class GUI {
      */
     public void turnSwitchDisplay(String string) {
         setCurrTurn(string);
-        setSide(string);
         turn.setText("" + getCurrTurn());
     }
 
@@ -171,13 +165,6 @@ public class GUI {
             return true;
         }
         return false;
-    }
-
-    /*
-     * Сообщает игроку, что противник вышел из игры
-     */
-    public void opponentQuit() {
-        JOptionPane.showMessageDialog(frame, "Противник вышел из игры!", "Противний вышел", JOptionPane.WARNING_MESSAGE);
     }
 
     /*
