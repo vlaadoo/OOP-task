@@ -18,8 +18,7 @@ public class RookTest {
 			}
 		}
 	}
-	
-	
+
 	@Test
 	public void testLeft() {
 		Board test = new Board(false);
@@ -29,7 +28,6 @@ public class RookTest {
 		test.chessBoard[3][3].setOccupier(p);
 		
 		assertTrue("Влево", test.move(new Point(3, 3), new Point(1, 3)));
-	
 	}
 	
 	@Test
@@ -41,19 +39,6 @@ public class RookTest {
 		test.chessBoard[3][3].setOccupier(p);
 		
 		assertTrue("Вправо", test.move(new Point(3, 3), new Point(5, 3)));
-	
-	}
-	
-	@Test
-	public void testDown() {
-		Board test = new Board(false);
-		boardInit(test);
-		Piece p = new Rook(test.chessBoard[3][3], "Белые");
-		
-		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("Вниз", test.move(new Point(3, 3), new Point(3, 1)));
-	
 	}
 	
 	@Test
@@ -64,8 +49,18 @@ public class RookTest {
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("Вверх", test.move(new Point(3, 3), new Point(3, 5)));
+		assertTrue("Вверх", test.move(new Point(3, 3), new Point(3, 1)));
+	}
 	
+	@Test
+	public void testDown() {
+		Board test = new Board(false);
+		boardInit(test);
+		Piece p = new Rook(test.chessBoard[3][3], "Белые");
+		
+		test.chessBoard[3][3].setOccupier(p);
+		
+		assertTrue("Вниз", test.move(new Point(3, 3), new Point(3, 5)));
 	}
 	
 	@Test
@@ -77,7 +72,6 @@ public class RookTest {
 		test.chessBoard[0][7].setOccupier(p);
 		
 		assertFalse("Диагональ, выход за пределы доски", test.move(new Point(0, 7), new Point(0, 9)));
-	
 	}
 	
 	@Test
@@ -91,7 +85,6 @@ public class RookTest {
 		test.chessBoard[3][5].setOccupier(enemy);
 		
 		assertTrue("Атака соперника", test.move(new Point(3, 3), new Point(3, 5)));
-	
 	}
 	
 	@Test
@@ -105,7 +98,5 @@ public class RookTest {
 		test.chessBoard[3][5].setOccupier(friendly);
 		
 		assertFalse("Атака союзника", test.move(new Point(3, 3), new Point(3, 5)));
-	
 	}
-	
 }

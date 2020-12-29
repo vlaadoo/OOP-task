@@ -17,7 +17,7 @@ public class dbTest {
 
 
     @Test
-    public void addToDbTest() throws SQLException {
+    public void addCheckmateTest() throws SQLException {
         db.saveCheckmate("checkmate test", "test");
 
         int maxId = 0;
@@ -33,5 +33,24 @@ public class dbTest {
 
         List<String> result = db.getAllGames();
         assertEquals(result.get(result.size() - 1), maxId + "; checkmate test; test");
+    }
+
+    @Test
+    public void addStalemateTest() throws SQLException {
+        db.saveStalemate("stalemate test", "test");
+
+        int maxId = 0;
+        try (Connection c = db.getConnect()) {
+            PreparedStatement st = c.prepareStatement("select max(GAME_ID) from CHESSGAME");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                maxId = rs.getInt("MAX(GAME_ID)");
+            }
+        } catch (SQLException exception) {
+            throw new RuntimeException("Error in delete test", exception);
+        }
+
+        List<String> result = db.getAllGames();
+        assertEquals(result.get(result.size() - 1), maxId + "; stalemate test; test");
     }
 }

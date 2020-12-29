@@ -10,6 +10,7 @@ import java.util.List;
 public class Board extends JPanel {
 
     public Square[][] chessBoard;
+    public static double steps = 0;
 
 
     public Board(boolean custom) {
@@ -100,6 +101,7 @@ public class Board extends JPanel {
                         origin.setOccupier(null);
                         origin.setIcon(null);
                         destination.getOccupier().setMoved(true);
+                        steps++;
                         return true;
                     }
                 }
@@ -249,6 +251,7 @@ public class Board extends JPanel {
 
         if (check == true) {
             if (hasMoves == false) {
+                System.out.println(steps);
                 return true;
             }
         }

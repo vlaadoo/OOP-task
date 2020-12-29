@@ -19,7 +19,29 @@ public class KnightTest {
 			}
 		}
 	}
-	
+
+	@Test
+	public void testUpLeft1() {
+		Board test = new Board(false);
+		boardInit(test);
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
+
+		test.chessBoard[3][3].setOccupier(p);
+
+		assertTrue("Вверх влево 1", test.move(new Point(3, 3), new Point(1, 2)));
+	}
+
+	@Test
+	public void testUpLeft2() {
+		Board test = new Board(false);
+		boardInit(test);
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
+
+		test.chessBoard[3][3].setOccupier(p);
+
+		assertTrue("Вверх влево 2", test.move(new Point(3, 3), new Point(2, 1)));
+	}
+
 	@Test
 	public void testUpRight1() {
 		Board test = new Board(false);
@@ -28,8 +50,7 @@ public class KnightTest {
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("UpRight1", test.move(new Point(3, 3), new Point(4, 5)));
-	
+		assertTrue("Вверх вправо 1", test.move(new Point(3, 3), new Point(2, 5)));
 	}
 	
 	@Test
@@ -40,32 +61,7 @@ public class KnightTest {
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("UpRight2", test.move(new Point(3, 3), new Point(5, 4)));
-	
-	}
-	
-	@Test
-	public void testDownRight1() {
-		Board test = new Board(false);
-		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "Белые");
-		
-		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("DownRight1", test.move(new Point(3, 3), new Point(2, 5)));
-	
-	}
-	
-	@Test
-	public void testDownRight2() {
-		Board test = new Board(false);
-		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "Белые");
-		
-		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("DownRight2", test.move(new Point(3, 3), new Point(1, 4)));
-	
+		assertTrue("Вверх вправо 2", test.move(new Point(3, 3), new Point(1, 4)));
 	}
 	
 	@Test
@@ -76,8 +72,7 @@ public class KnightTest {
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("DownLeft1", test.move(new Point(3, 3), new Point(1, 2)));
-	
+		assertTrue("Вниз влево 1", test.move(new Point(3, 3), new Point(4, 1)));
 	}
 	
 	@Test
@@ -88,32 +83,29 @@ public class KnightTest {
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("DownLeft2", test.move(new Point(3, 3), new Point(2, 1)));
-	
+		assertTrue("Вниз влево 2", test.move(new Point(3, 3), new Point(5, 2)));
 	}
-	
+
 	@Test
-	public void testUpLeft1() {
+	public void testDownRight1() {
 		Board test = new Board(false);
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
-		
+
 		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("UpLeft1", test.move(new Point(3, 3), new Point(4, 1)));
-	
+
+		assertTrue("Вниз вправо 1", test.move(new Point(3, 3), new Point(4, 5)));
 	}
-	
+
 	@Test
-	public void testUpLeft2() {
+	public void testDownRight2() {
 		Board test = new Board(false);
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
-		
+
 		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("UpLeft2", test.move(new Point(3, 3), new Point(5, 2)));
-	
+
+		assertTrue("Вниз вправо 2", test.move(new Point(3, 3), new Point(5, 4)));
 	}
 	
 	@Test
@@ -125,7 +117,6 @@ public class KnightTest {
 		test.chessBoard[0][7].setOccupier(p);
 		
 		assertFalse("DiagOutOfBoundsMove", test.move(new Point(0, 7), new Point(1, 9)));
-	
 	}
 	
 	@Test
@@ -139,7 +130,6 @@ public class KnightTest {
 		test.chessBoard[4][5].setOccupier(enemy);
 		
 		assertTrue("AttackEnemy", test.move(new Point(3, 3), new Point(4, 5)));
-	
 	}
 	
 	@Test
@@ -153,7 +143,5 @@ public class KnightTest {
 		test.chessBoard[4][5].setOccupier(friendly);
 		
 		assertFalse("AttackFriendly", test.move(new Point(3, 3), new Point(4, 5)));
-	
 	}
-	
 }

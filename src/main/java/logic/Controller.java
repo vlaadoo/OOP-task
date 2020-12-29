@@ -1,7 +1,6 @@
 package logic;
 
 import GUI.GUI;
-import connect.Chess;
 import persistence.DataBase;
 
 import java.awt.*;
@@ -66,6 +65,7 @@ public class Controller implements ActionListener {
         this.setSelectedSquare(null);
         model.addActionListeners(this);
         gui.resetBoardPanel(getModel().getBoard());
+        Board.steps = 0;
     }
 
     /*
@@ -139,18 +139,30 @@ public class Controller implements ActionListener {
      */
     //TODO доделать бд и тесты
     public void testGameStatus(String turn) {
+        String stepsCount = "Игра завершена за " + (int) Math.ceil(Board.steps/2) + " ходов!";
         if (model.getBoard().isCheckmate(turn)) { // если у игрока мат
-            gui.notifyCheckmate(turn);// передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
-            gui.askRestart();
+            // результат игры вносится в базу данных
             try {
-                db.saveWin(switchColor(turn) + " победили!");
+                db.saveCheckmate(switchColor(turn) + " победили!", stepsCount);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            }
+            gui.notifyCheckmate(turn);// передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
+//            gui.askRestart();
+            boolean restarted = gui.askRestart();
+            if (restarted == true) {
+                game.sendPacket(null, true, false, false);
+                resetBoard();
             }
             return;
         }
 
         if (model.getBoard().isStalemate(turn)) { // Если пат
+            try {
+                db.saveStalemate("Игра закончилась ничьей!", stepsCount);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             gui.notifyStalemate();
             gui.askRestart();
             return;

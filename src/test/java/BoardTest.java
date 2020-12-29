@@ -20,8 +20,6 @@ public class BoardTest {
 		}
 	}
 
-	
-
 	@Test
 	public void testTestSelfCheck() {
 		Board test = new Board(false);
@@ -134,5 +132,4 @@ public class BoardTest {
 		
 		assertTrue(test.isCheckmate("Белые"));
 	}
-
 }
