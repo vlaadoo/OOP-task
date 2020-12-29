@@ -137,7 +137,6 @@ public class Controller implements ActionListener {
      * Провека наличия шаха, мата или пата с учетом стороны, которая ходит
      * При наличии чего-либо происходит уведомление игрока с помощью появления предупреждения
      */
-    //TODO доделать бд и тесты
     public void testGameStatus(String turn) {
         String stepsCount = "Игра завершена за " + (int) Math.ceil(Board.steps/2) + " ходов!";
         if (model.getBoard().isCheckmate(turn)) { // если у игрока мат

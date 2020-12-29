@@ -116,7 +116,7 @@ public class KnightTest {
 		
 		test.chessBoard[0][7].setOccupier(p);
 		
-		assertFalse("DiagOutOfBoundsMove", test.move(new Point(0, 7), new Point(1, 9)));
+		assertFalse("Движение за пределы доски", test.move(new Point(0, 7), new Point(1, 9)));
 	}
 	
 	@Test
@@ -129,7 +129,7 @@ public class KnightTest {
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[4][5].setOccupier(enemy);
 		
-		assertTrue("AttackEnemy", test.move(new Point(3, 3), new Point(4, 5)));
+		assertTrue("Атака соперника", test.move(new Point(3, 3), new Point(4, 5)));
 	}
 	
 	@Test
@@ -142,6 +142,6 @@ public class KnightTest {
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[4][5].setOccupier(friendly);
 		
-		assertFalse("AttackFriendly", test.move(new Point(3, 3), new Point(4, 5)));
+		assertFalse("Атака союзника", test.move(new Point(3, 3), new Point(4, 5)));
 	}
 }

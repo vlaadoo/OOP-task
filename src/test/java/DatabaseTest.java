@@ -4,7 +4,7 @@ import persistence.DataBase;
 import java.sql.*;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class DatabaseTest {
     DataBase db = new DataBase();
@@ -27,7 +27,7 @@ public class DatabaseTest {
                 maxId = rs.getInt("MAX(GAME_ID)");
             }
         } catch (SQLException exception) {
-            throw new RuntimeException("Error in delete test", exception);
+            throw new RuntimeException(exception);
         }
 
         List<String> result = db.getAllGames();
@@ -46,7 +46,7 @@ public class DatabaseTest {
                 maxId = rs.getInt("MAX(GAME_ID)");
             }
         } catch (SQLException exception) {
-            throw new RuntimeException("Error in delete test", exception);
+            throw new RuntimeException(exception);
         }
 
         List<String> result = db.getAllGames();
