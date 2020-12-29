@@ -1,9 +1,9 @@
 package logic;
 
 import GUI.*;
-import connect.Connect;
-import connect.Packet;
-import connect.Chess;
+import main.Connect;
+import main.Packet;
+import main.Chess;
 
 public class Game {
     private Model model;
