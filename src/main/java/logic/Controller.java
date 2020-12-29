@@ -34,19 +34,19 @@ public class Controller implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
 
-        String action_com = e.getActionCommand();
-        if (action_com == "square") {
+        String actionCommand = e.getActionCommand();
+        if (actionCommand == "square") {
             isClicked((Square) e.getSource());  // передает квадрат, на котором произошло событие, в функцию isClicked.
         }
 
-        if (action_com == "restart") {
+        if (actionCommand == "restart") {
             boolean restarted = gui.askRestart();
             if (restarted == true) {
                 game.sendPacket(null, true, false, false);
                 resetBoard();
             }
         }
-        if (action_com == "exit") {
+        if (actionCommand == "exit") {
             boolean exit = gui.askExit();
             if (exit == true) {
                 game.sendPacket(null, false, false, true);
@@ -59,7 +59,7 @@ public class Controller implements ActionListener {
      * Возвращает доску к первоначальному состоянию
      */
     public void resetBoard() {
-        this.setModel(new Model(model.getWhiteScore(), model.getBlackScore(), false));
+        this.setModel(new Model(model.getWhiteScore(), model.getBlackScore()));
         this.setTurn("Белые");
         gui.turnSwitchDisplay("Белые");
         this.setSelectedSquare(null);
@@ -73,8 +73,8 @@ public class Controller implements ActionListener {
      */
     public void isClicked(Square square) {
         if (getSelectedSquare() == null) {
-            if (square.getOccupier() != null) {        // есть ли в данном квадрате фигура
-                if (checkColorOfTurn(square)) {        // совпадает ли цвет фигуры и текущего игрока
+            if (square.getOccupier() != null) { // есть ли в данном квадрате фигура
+                if (checkColorOfTurn(square)) { // совпадает ли цвет фигуры и текущего игрока
                     select(square);
                 }
             }
@@ -98,11 +98,11 @@ public class Controller implements ActionListener {
     public void select(Square square) {
         square.setBackground(new Color(21, 190, 68));
 
-        setSelectedSquare(square);    // определение выбранного квадрата
+        setSelectedSquare(square); // определение выбранного квадрата
 
-        List<Point> moves = square.getOccupier().getFilteredMoves();  // получение возможных ходов
+        List<Point> moves = square.getOccupier().getFilteredMoves(); // получение возможных ходов
 
-        for (Point p : moves) {            // выделение возможных ходов
+        for (Point p : moves) { // выделение возможных ходов
             model.getBoard().getSquare(p).setBackground(new Color(60, 234, 54));
             model.getBoard().getSquare(p).setHighlighted(true);
         }
@@ -114,7 +114,7 @@ public class Controller implements ActionListener {
     public void deselect(Square square) {
         square.setBackground(square.getOrigColor());
 
-        setSelectedSquare(null);                    // заменяет выбранный квадрат на null
+        setSelectedSquare(null); // заменяет выбранный квадрат на null
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -128,9 +128,9 @@ public class Controller implements ActionListener {
      * Перемещает фигуру из начальной точки в конечную
      */
     public void move(Point from, Point to) {
-        model.move(from, to);                // перемещение фигуры по правильным условиям
-        switchTurns();                        // смена ходящей стороны
-        testGameStatus(getTurn());            // проверка соперника на шах, мат и пат
+        model.move(from, to); // перемещение фигуры по правильным условиям
+        switchTurns(); // смена ходящей стороны
+        testGameStatus(getTurn()); // проверка соперника на шах, мат и пат
     }
 
     /*
@@ -145,6 +145,7 @@ public class Controller implements ActionListener {
             try {
                 db.saveCheckmate(switchColor(turn) + " победили!", stepsCount);
             } catch (SQLException throwables) {
+                gui.notifyErrorDb();
                 throw new RuntimeException(throwables);
             }
             gui.notifyCheckmate(turn); // передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
@@ -160,6 +161,7 @@ public class Controller implements ActionListener {
             try {
                 db.saveStalemate("Игра закончилась ничьей!", stepsCount);
             } catch (SQLException throwables) {
+                gui.notifyErrorDb();
                 throw new RuntimeException(throwables);
             }
             gui.notifyStalemate();
@@ -179,7 +181,7 @@ public class Controller implements ActionListener {
     public void switchTurns() {
         if (this.getTurn() == "Белые") {
             this.setTurn("Черные");
-            gui.turnSwitchDisplay("Черные");  // смена текущей стороны, которая должна ходить
+            gui.turnSwitchDisplay("Черные"); // смена текущей стороны, которая должна ходить
         } else if (this.getTurn() == "Черные") {
             this.setTurn("Белые");
             gui.turnSwitchDisplay("Белые");

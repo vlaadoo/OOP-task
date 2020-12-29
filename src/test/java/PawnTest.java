@@ -22,7 +22,7 @@ public class PawnTest {
 	
 	@Test
 	public void testMove() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Pawn(test.chessBoard[0][1], "Черные");
 		Piece tryBeEaten = new Pawn(test.chessBoard[1][4], "Черные");

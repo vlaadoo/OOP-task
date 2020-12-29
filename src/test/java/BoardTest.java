@@ -22,7 +22,7 @@ public class BoardTest {
 
 	@Test
 	public void testTestSelfCheck() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		
 		Piece king = new King(test.chessBoard[0][0], "Белые");
@@ -40,7 +40,7 @@ public class BoardTest {
 
 	@Test
 	public void testGetSquareIntInt() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		
 		assertNull(test.getSquare(0, 8));
@@ -54,7 +54,7 @@ public class BoardTest {
 
 	@Test
 	public void testIsChecked() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		
 		Piece king = new King(test.chessBoard[0][0], "Белые");
@@ -70,7 +70,7 @@ public class BoardTest {
 
 	@Test
 	public void testHasMoves() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		
 		Piece king = new King(test.chessBoard[0][0], "Белые");
@@ -99,7 +99,7 @@ public class BoardTest {
 
 	@Test
 	public void testKingLocation() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		
 		Piece king = new King(test.chessBoard[0][0], "Белые");
@@ -111,7 +111,7 @@ public class BoardTest {
 
 	@Test
 	public void testEndGameStatus() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		
 		Piece king = new King(test.chessBoard[0][0], "Белые");

@@ -22,7 +22,7 @@ public class QueenTest {
 
 	@Test
 	public void testDiagUpLeft() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 
@@ -33,7 +33,7 @@ public class QueenTest {
 
 	@Test
 	public void testDiagUpRight() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
@@ -44,7 +44,7 @@ public class QueenTest {
 
 	@Test
 	public void testDiagDownLeft() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 
@@ -55,7 +55,7 @@ public class QueenTest {
 
 	@Test
 	public void testDiagDownRight() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
@@ -66,7 +66,7 @@ public class QueenTest {
 
 	@Test
 	public void testLeft() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 
@@ -77,7 +77,7 @@ public class QueenTest {
 	
 	@Test
 	public void testRight() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
@@ -88,7 +88,7 @@ public class QueenTest {
 	
 	@Test
 	public void testUp() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
@@ -99,7 +99,7 @@ public class QueenTest {
 	
 	@Test
 	public void testDown() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
@@ -110,7 +110,7 @@ public class QueenTest {
 	
 	@Test
 	public void testOutOfBoundsMove() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[0][7], "Белые");
 		
@@ -121,7 +121,7 @@ public class QueenTest {
 	
 	@Test
 	public void testAttackEnemy() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		Piece enemy = new Queen(test.chessBoard[3][5], "Черные");
@@ -134,7 +134,7 @@ public class QueenTest {
 	
 	@Test
 	public void testAttackFriendly() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		Piece friendly = new Queen(test.chessBoard[3][5], "Белые");

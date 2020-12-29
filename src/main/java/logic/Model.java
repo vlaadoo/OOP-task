@@ -16,14 +16,13 @@ public class Model {
 	public Model() {
 		setWhiteScore(0);
 		setBlackScore(0);
-		setBoard(new Board(false));
+		setBoard(new Board());
 		setCommands(new Stack<Command>());
 	}
-	
-	public Model(int whiteScore, int blackScore, boolean custom) {
+
+	public Model(int whiteScore, int blackScore) {
 		setWhiteScore(whiteScore);
 		setBlackScore(blackScore);
-		setBoard(new Board(custom));
 		setCommands(new Stack<Command>());
 	}
 

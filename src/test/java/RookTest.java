@@ -21,7 +21,7 @@ public class RookTest {
 
 	@Test
 	public void testLeft() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Rook(test.chessBoard[3][3], "Белые");
 		
@@ -32,7 +32,7 @@ public class RookTest {
 	
 	@Test
 	public void testRight() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Rook(test.chessBoard[3][3], "Белые");
 		
@@ -43,7 +43,7 @@ public class RookTest {
 	
 	@Test
 	public void testUp() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Rook(test.chessBoard[3][3], "Белые");
 		
@@ -54,7 +54,7 @@ public class RookTest {
 	
 	@Test
 	public void testDown() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Rook(test.chessBoard[3][3], "Белые");
 		
@@ -65,7 +65,7 @@ public class RookTest {
 	
 	@Test
 	public void testOutOfBoundsMove() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Rook(test.chessBoard[0][7], "Белые");
 		
@@ -76,7 +76,7 @@ public class RookTest {
 	
 	@Test
 	public void testAttackEnemy() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Rook(test.chessBoard[3][3], "Белые");
 		Piece enemy = new Rook(test.chessBoard[3][5], "Черные");
@@ -89,7 +89,7 @@ public class RookTest {
 	
 	@Test
 	public void testAttackFriendly() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Rook(test.chessBoard[3][3], "Белые");
 		Piece friendly = new Rook(test.chessBoard[3][5], "Белые");

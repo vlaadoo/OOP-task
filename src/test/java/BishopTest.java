@@ -22,7 +22,7 @@ public class BishopTest {
 
 	@Test
 	public void testDiagUpLeft() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
 
@@ -33,7 +33,7 @@ public class BishopTest {
 
 	@Test
 	public void testDiagUpRight() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
 		
@@ -44,7 +44,7 @@ public class BishopTest {
 
 	@Test
 	public void testDiagDownLeft() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
 
@@ -55,7 +55,7 @@ public class BishopTest {
 
 	@Test
 	public void testDiagDownRight() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
 		
@@ -66,7 +66,7 @@ public class BishopTest {
 	
 	@Test
 	public void testOutOfBoundsMove() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Bishop(test.chessBoard[0][7], "Белые");
 		
@@ -77,7 +77,7 @@ public class BishopTest {
 	
 	@Test
 	public void testAttackEnemy() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
 		Piece enemy = new Bishop(test.chessBoard[5][5], "Черные");
@@ -90,7 +90,7 @@ public class BishopTest {
 	
 	@Test
 	public void testAttackFriendly() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
 		Piece friendly = new Bishop(test.chessBoard[5][5], "Белые");

@@ -95,7 +95,7 @@ public class GUI {
     // Появляется уведомление при проигрыше одной из сторон
     public void notifyCheckmate(String turn) {
         turnTitle.setText("");
-        turnSwitchDisplay("Шах и мат! " + turn + " проиграли!" );
+        turnSwitchDisplay("Шах и мат! " + turn + " проиграли!");
         JOptionPane.showMessageDialog(frame, "Шах и мат! " + turn + " проиграли!");
         if (turn == "Черные") {
             incrementWhiteScore();
@@ -118,6 +118,11 @@ public class GUI {
         } else {
             JOptionPane.showMessageDialog(frame, "Шах у черных!");
         }
+    }
+
+    // Вызывается, если не получается занести результаты в базу данных
+    public void notifyErrorDb() {
+        JOptionPane.showMessageDialog(frame, "Ошибка загрузки в базу данных");
     }
 
     /*

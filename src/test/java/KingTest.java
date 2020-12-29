@@ -23,7 +23,7 @@ public class KingTest {
 
 	@Test
 	public void testDiagUpLeft() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new King(test.chessBoard[3][3], "Белые");
 
@@ -34,7 +34,7 @@ public class KingTest {
 
 	@Test
 	public void testDiagUpRight() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new King(test.chessBoard[3][3], "Белые");
 		
@@ -45,7 +45,7 @@ public class KingTest {
 
 	@Test
 	public void testDiagDownLeft() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new King(test.chessBoard[3][3], "Белые");
 
@@ -56,7 +56,7 @@ public class KingTest {
 
 	@Test
 	public void testDiagDownRight() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new King(test.chessBoard[3][3], "Белые");
 		
@@ -67,7 +67,7 @@ public class KingTest {
 	
 	@Test
 	public void testOutOfBoundsMove() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new King(test.chessBoard[0][7], "Белые");
 		
@@ -78,7 +78,7 @@ public class KingTest {
 	
 	@Test
 	public void testAttackEnemy() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new King(test.chessBoard[3][3], "Белые");
 		Piece enemy = new King(test.chessBoard[4][4], "Черные");
@@ -91,7 +91,7 @@ public class KingTest {
 	
 	@Test
 	public void testAttackFriendly() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new King(test.chessBoard[3][3], "Белые");
 		Piece friendly = new King(test.chessBoard[4][4], "Белые");

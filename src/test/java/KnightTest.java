@@ -22,7 +22,7 @@ public class KnightTest {
 
 	@Test
 	public void testUpLeft1() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 
@@ -33,7 +33,7 @@ public class KnightTest {
 
 	@Test
 	public void testUpLeft2() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 
@@ -44,7 +44,7 @@ public class KnightTest {
 
 	@Test
 	public void testUpRight1() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
@@ -55,7 +55,7 @@ public class KnightTest {
 	
 	@Test
 	public void testUpRight2() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
@@ -66,7 +66,7 @@ public class KnightTest {
 	
 	@Test
 	public void testDownLeft1() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
@@ -77,7 +77,7 @@ public class KnightTest {
 	
 	@Test
 	public void testDownLeft2() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
@@ -88,7 +88,7 @@ public class KnightTest {
 
 	@Test
 	public void testDownRight1() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 
@@ -99,7 +99,7 @@ public class KnightTest {
 
 	@Test
 	public void testDownRight2() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 
@@ -110,7 +110,7 @@ public class KnightTest {
 	
 	@Test
 	public void testOutOfBoundsMove() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[0][7], "Белые");
 		
@@ -121,7 +121,7 @@ public class KnightTest {
 	
 	@Test
 	public void testAttackEnemy() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		Piece enemy = new Knight(test.chessBoard[4][5], "Черные");
@@ -134,7 +134,7 @@ public class KnightTest {
 	
 	@Test
 	public void testAttackFriendly() {
-		Board test = new Board(false);
+		Board test = new Board();
 		boardInit(test);
 		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		Piece friendly = new Knight(test.chessBoard[4][5], "Белые");

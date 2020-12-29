@@ -13,14 +13,14 @@ public class Board extends JPanel {
     public static double steps = 0;
 
 
-    public Board(boolean custom) {
+    public Board() {
         chessBoard = new Square[8][8];
         setLayout(new GridLayout(8, 8));
-        boardInit(custom);
+        boardInit();
     }
 
 
-    public void boardInit(boolean custom) {
+    public void boardInit() {
         removeAll();
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 8; x++) {
@@ -43,11 +43,9 @@ public class Board extends JPanel {
                 String color = null;
 
                 if (y == 0 || y == 1) {
-                    // Присвается черный цвет фигурам, находящимся на стороне черных (y = 0 и y = 1)
-                    color = "Черные";
+                    color = "Черные"; // Присвается черный цвет фигурам, находящимся на стороне черных (y = 0 и y = 1)
                 } else if (y == 6 || y == 7) {
-                    // Присвается белый цвет фигурам, находящимся на стороне белых (y = 6 и y = 7)
-                    color = "Белые";
+                    color = "Белые"; // Присвается белый цвет фигурам, находящимся на стороне белых (y = 6 и y = 7)
                 }
 
                 if (y == 1 || y == 6) {
@@ -137,7 +135,7 @@ public class Board extends JPanel {
     }
 
     /*
-     * Возвращает Square в точке x, y
+     * Возвращает клетку в точке x, y
      */
     public Square getSquare(int x, int y) {
         if (x >= 0 && x <= 7 && y <= 7 && y >= 0) {
@@ -146,9 +144,6 @@ public class Board extends JPanel {
         return null;
     }
 
-    /*
-     * Альтернативный метод возврата Square через использование точки вместо координат
-     */
     public Square getSquare(Point point) {
         return getSquare(point.x, point.y);
     }
@@ -222,7 +217,7 @@ public class Board extends JPanel {
     }
 
     /*
-     * Проверяет, выполнены ли условия для заверешния игры и дает информацию о соответствующем состоянии
+     * Проверяет наличие в игре ситуации, когда ни одна фигура не может ходить
      */
     public boolean isStalemate(String color) {
         boolean check = isChecked(color);
