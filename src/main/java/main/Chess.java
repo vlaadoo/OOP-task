@@ -1,6 +1,6 @@
 package main;
 
-public class Chess extends Connect {
+public class Chess extends Startup {
 
     public static String color = "Белые";
 

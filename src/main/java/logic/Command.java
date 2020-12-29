@@ -3,13 +3,12 @@ package logic;
 import pieces.Piece;
 
 import java.awt.*;
-import java.io.Serializable;
 
-public class Command implements Serializable {
+public class Command {
 
 
-    private transient Piece moved;
-    private transient Piece taken;
+    private Piece moved;
+    private Piece taken;
     private Point from;
     private Point to;
 

@@ -5,12 +5,12 @@ import logic.Game;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-public abstract class Connect {
+public abstract class Startup {
     protected Game game;
     protected String color;
     protected ObjectOutputStream out;
 
-    public Connect() {
+    public Startup() {
         this.setGame(new Game(this));
     }
 

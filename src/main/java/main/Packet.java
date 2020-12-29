@@ -2,9 +2,7 @@ package main;
 
 import logic.Command;
 
-import java.io.Serializable;
-
-public class Packet implements Serializable {
+public class Packet {
 
 	private Command com;
 	private boolean restart;
