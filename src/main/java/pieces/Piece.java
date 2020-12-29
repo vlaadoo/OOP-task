@@ -75,12 +75,7 @@ public abstract class Piece {
         return icon;
     }
 
-    public void setIcon(ImageIcon icon) {
-        this.icon = icon;
-    }
-
-    protected void getVertDown(List<Point> moves, Point moveIterator, int startx,
-                               int starty) {
+    protected void getVertDown(List<Point> moves, Point moveIterator, int startx, int starty) {
         moveIterator.x = startx;
         moveIterator.y = starty;
         moveIterator.y--;
@@ -97,8 +92,7 @@ public abstract class Piece {
         }
     }
 
-    protected void getVertUp(List<Point> moves, Point moveIterator, int startx,
-                             int starty) {
+    protected void getVertUp(List<Point> moves, Point moveIterator, int startx, int starty) {
         moveIterator.x = startx;
         moveIterator.y = starty;
 
@@ -115,8 +109,7 @@ public abstract class Piece {
         }
     }
 
-    protected void getHorizLeft(List<Point> moves, Point moveIterator, int startx,
-                                int starty) {
+    protected void getHorizLeft(List<Point> moves, Point moveIterator, int startx, int starty) {
         moveIterator.x = startx;
         moveIterator.y = starty;
 
@@ -133,8 +126,7 @@ public abstract class Piece {
         }
     }
 
-    protected void getHorizRight(List<Point> moves, Point moveIterator, int startx,
-                                 int starty) {
+    protected void getHorizRight(List<Point> moves, Point moveIterator, int startx, int starty) {
         moveIterator.x = startx;
         moveIterator.y = starty;
         moveIterator.x++;
@@ -150,8 +142,7 @@ public abstract class Piece {
         }
     }
 
-    protected void getDiagDownLeft(List<Point> moves, Point moveIterator,
-                                   int startx, int starty) {
+    protected void getDiagDownLeft(List<Point> moves, Point moveIterator, int startx, int starty) {
         moveIterator.x = startx;
         moveIterator.y = starty;
         moveIterator.x--;
@@ -170,8 +161,7 @@ public abstract class Piece {
         }
     }
 
-    protected void getDiagUpLeft(List<Point> moves, Point moveIterator, int startx,
-                                 int starty) {
+    protected void getDiagUpLeft(List<Point> moves, Point moveIterator, int startx, int starty) {
         moveIterator.x = startx;
         moveIterator.y = starty;
         moveIterator.x--;
@@ -191,8 +181,7 @@ public abstract class Piece {
         }
     }
 
-    protected void getDiagDownRight(List<Point> moves, Point moveIterator,
-                                    int startx, int starty) {
+    protected void getDiagDownRight(List<Point> moves, Point moveIterator, int startx, int starty) {
         moveIterator.x = startx;
         moveIterator.y = starty;
         moveIterator.x++;
@@ -211,8 +200,7 @@ public abstract class Piece {
         }
     }
 
-    protected void getDiagUpRight(List<Point> moves, Point moveIterator, int startx,
-                                  int starty) {
+    protected void getDiagUpRight(List<Point> moves, Point moveIterator, int startx, int starty) {
         moveIterator.x = startx;
         moveIterator.y = starty;
         moveIterator.x++;
@@ -230,6 +218,4 @@ public abstract class Piece {
             moveIterator.y++;
         }
     }
-
-
 }

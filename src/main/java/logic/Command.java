@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class Command {
 
-
     private Piece moved;
     private Piece taken;
     private Point from;
