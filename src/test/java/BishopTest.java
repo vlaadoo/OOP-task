@@ -19,93 +19,85 @@ public class BishopTest {
 			}
 		}
 	}
-	
+
 	@Test
 	public void testDiagUpLeft() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Bishop(test.chessBoard[3][3], "white");
-		
+		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
+
 		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("DiagUpLeft", test.move(new Point(3, 3), new Point(1, 5)));
-	
+
+		assertTrue("Диагональ вверх влево", test.move(new Point(3, 3), new Point(1, 1)));
 	}
-	
+
 	@Test
 	public void testDiagUpRight() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Bishop(test.chessBoard[3][3], "white");
+		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("DiagUpRight", test.move(new Point(3, 3), new Point(5, 5)));
-	
+		assertTrue("Диагональ вверх и вправо", test.move(new Point(3, 3), new Point(1, 5)));
 	}
-	
-	@Test
-	public void testDiagDownRight() {
-		Board test = new Board(false);
-		boardInit(test);
-		Piece p = new Bishop(test.chessBoard[3][3], "white");
-		
-		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("DiagDownRight", test.move(new Point(3, 3), new Point(5, 1)));
-	
-	}
-	
+
 	@Test
 	public void testDiagDownLeft() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Bishop(test.chessBoard[3][3], "white");
+		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
+
+		test.chessBoard[3][3].setOccupier(p);
+
+		assertTrue("Диагональ вниз влево", test.move(new Point(3, 3), new Point(5, 1)));
+	}
+
+	@Test
+	public void testDiagDownRight() {
+		Board test = new Board(false);
+		boardInit(test);
+		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("DiagDownLeft", test.move(new Point(3, 3), new Point(1, 1)));
-	
+		assertTrue("Диагональ вниз и вправо", test.move(new Point(3, 3), new Point(5, 5)));
 	}
 	
 	@Test
 	public void testOutOfBoundsMove() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Bishop(test.chessBoard[0][7], "white");
+		Piece p = new Bishop(test.chessBoard[0][7], "Белые");
 		
 		test.chessBoard[0][7].setOccupier(p);
 		
-		assertFalse("DiagOutOfBoundsMove", test.move(new Point(0, 7), new Point(2, 9)));
-	
+		assertFalse("Диагональ, выход за пределы доски", test.move(new Point(0, 7), new Point(2, 9)));
 	}
 	
 	@Test
 	public void testAttackEnemy() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Bishop(test.chessBoard[3][3], "white");
-		Piece enemy = new Bishop(test.chessBoard[5][5], "black");
+		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
+		Piece enemy = new Bishop(test.chessBoard[5][5], "Черные");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[5][5].setOccupier(enemy);
 		
-		assertTrue("AttackEnemy", test.move(new Point(3, 3), new Point(5, 5)));
-	
+		assertTrue("Атака соперника", test.move(new Point(3, 3), new Point(5, 5)));
 	}
 	
 	@Test
 	public void testAttackFriendly() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Bishop(test.chessBoard[3][3], "white");
-		Piece friendly = new Bishop(test.chessBoard[5][5], "white");
+		Piece p = new Bishop(test.chessBoard[3][3], "Белые");
+		Piece friendly = new Bishop(test.chessBoard[5][5], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[5][5].setOccupier(friendly);
 		
-		assertFalse("AttackFriendly", test.move(new Point(3, 3), new Point(5, 5)));
-	
+		assertFalse("Атака союзника", test.move(new Point(3, 3), new Point(5, 5)));
 	}
-	
 }

@@ -27,9 +27,9 @@ public class BoardTest {
 		Board test = new Board(false);
 		boardInit(test);
 		
-		Piece king = new King(test.chessBoard[0][0], "white");
-		Piece moverRook = new Rook(test.chessBoard[1][0], "white");
-		Piece threatenerRook = new Rook(test.chessBoard[5][0], "black");
+		Piece king = new King(test.chessBoard[0][0], "Белые");
+		Piece moverRook = new Rook(test.chessBoard[1][0], "Белые");
+		Piece threatenerRook = new Rook(test.chessBoard[5][0], "Черные");
 		
 		test.chessBoard[0][0].setOccupier(king);
 		test.chessBoard[1][0].setOccupier(moverRook);
@@ -48,7 +48,7 @@ public class BoardTest {
 		assertNull(test.getSquare(0, 8));
 		assertNull(test.getSquare(3, 3).getOccupier());
 		
-		Piece king = new King(test.chessBoard[3][3], "white");
+		Piece king = new King(test.chessBoard[3][3], "Белые");
 		test.chessBoard[3][3].setOccupier(king);
 		
 		assertTrue(test.getSquare(3, 3).getOccupier().getClass().equals(King.class));
@@ -59,15 +59,15 @@ public class BoardTest {
 		Board test = new Board(false);
 		boardInit(test);
 		
-		Piece king = new King(test.chessBoard[0][0], "white");
+		Piece king = new King(test.chessBoard[0][0], "Белые");
 		test.chessBoard[0][0].setOccupier(king);
 		
-		assertFalse(test.isChecked("white"));
+		assertFalse(test.isChecked("Белые"));
 		
-		Piece threatenerRook = new Rook(test.chessBoard[5][0], "black");
+		Piece threatenerRook = new Rook(test.chessBoard[5][0], "Черные");
 		test.chessBoard[5][0].setOccupier(threatenerRook);
 		
-		assertTrue(test.isChecked("white"));
+		assertTrue(test.isChecked("Белые"));
 	}
 
 	@Test
@@ -75,28 +75,28 @@ public class BoardTest {
 		Board test = new Board(false);
 		boardInit(test);
 		
-		Piece king = new King(test.chessBoard[0][0], "white");
+		Piece king = new King(test.chessBoard[0][0], "Белые");
 		test.chessBoard[0][0].setOccupier(king);
 		
-		assertTrue(test.hasMoves("white"));
+		assertTrue(test.hasMoves("Белые"));
 		
-		Piece threatenerRook1 = new Rook(test.chessBoard[1][1], "black");
+		Piece threatenerRook1 = new Rook(test.chessBoard[1][1], "Черные");
 		test.chessBoard[1][1].setOccupier(threatenerRook1);
 		
-		assertTrue(test.hasMoves("white"));
+		assertTrue(test.hasMoves("Белые"));
 		
 		test.chessBoard[1][1].setOccupier(null);
-		Piece threatenerRook2 = new Rook(test.chessBoard[1][7], "black");
+		Piece threatenerRook2 = new Rook(test.chessBoard[1][7], "Черные");
 		test.chessBoard[1][7].setOccupier(threatenerRook2);
-		Piece threatenerRook3 = new Rook(test.chessBoard[7][1], "black");
+		Piece threatenerRook3 = new Rook(test.chessBoard[7][1], "Черные");
 		test.chessBoard[7][1].setOccupier(threatenerRook3);
 		
-		assertFalse(test.hasMoves("white"));
+		assertFalse(test.hasMoves("Белые"));
 		
-		Piece whiteKnight = new Knight(test.chessBoard[3][3], "white");
+		Piece whiteKnight = new Knight(test.chessBoard[3][3], "Белые");
 		test.chessBoard[3][3].setOccupier(whiteKnight);	
 		
-		assertTrue(test.hasMoves("white"));
+		assertTrue(test.hasMoves("Белые"));
 	}
 
 	@Test
@@ -104,11 +104,11 @@ public class BoardTest {
 		Board test = new Board(false);
 		boardInit(test);
 		
-		Piece king = new King(test.chessBoard[0][0], "white");
+		Piece king = new King(test.chessBoard[0][0], "Белые");
 		test.chessBoard[0][0].setOccupier(king);
-		assertFalse(test.kingLocation("white").equals(new Point(1, 1)));
-		assertFalse(test.kingLocation("black").equals(new Point(0, 0)));
-		assertTrue(test.kingLocation("white").equals(new Point(0, 0)));
+		assertFalse(test.kingLocation("Белые").equals(new Point(1, 1)));
+		assertFalse(test.kingLocation("Черные").equals(new Point(0, 0)));
+		assertTrue(test.kingLocation("Белые").equals(new Point(0, 0)));
 	}
 
 	@Test
@@ -116,23 +116,23 @@ public class BoardTest {
 		Board test = new Board(false);
 		boardInit(test);
 		
-		Piece king = new King(test.chessBoard[0][0], "white");
+		Piece king = new King(test.chessBoard[0][0], "Белые");
 		test.chessBoard[0][0].setOccupier(king);
 		
-		assertFalse(test.isStalemate("white"));
-		assertFalse(test.isCheckmate("white"));
+		assertFalse(test.isStalemate("Белые"));
+		assertFalse(test.isCheckmate("Белые"));
 		
-		Piece threatenerRook1 = new Rook(test.chessBoard[1][7], "black");
+		Piece threatenerRook1 = new Rook(test.chessBoard[1][7], "Черные");
 		test.chessBoard[1][7].setOccupier(threatenerRook1);
-		Piece threatenerRook2 = new Rook(test.chessBoard[7][1], "black");
+		Piece threatenerRook2 = new Rook(test.chessBoard[7][1], "Черные");
 		test.chessBoard[7][1].setOccupier(threatenerRook2);
 		
-		assertTrue(test.isStalemate("white"));
+		assertTrue(test.isStalemate("Белые"));
 		
-		Piece threatenerRook3 = new Rook(test.chessBoard[7][0], "black");
+		Piece threatenerRook3 = new Rook(test.chessBoard[7][0], "Черные");
 		test.chessBoard[7][0].setOccupier(threatenerRook3);
 		
-		assertTrue(test.isCheckmate("white"));
+		assertTrue(test.isCheckmate("Белые"));
 	}
 
 }

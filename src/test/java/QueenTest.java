@@ -24,7 +24,7 @@ public class QueenTest {
 	public void testDiagUpLeft() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -36,7 +36,7 @@ public class QueenTest {
 	public void testDiagUpRight() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -48,7 +48,7 @@ public class QueenTest {
 	public void testDiagDownRight() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -60,7 +60,7 @@ public class QueenTest {
 	public void testDiagDownLeft() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -72,7 +72,7 @@ public class QueenTest {
 	public void testLeft() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -84,7 +84,7 @@ public class QueenTest {
 	public void testRight() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -96,7 +96,7 @@ public class QueenTest {
 	public void testDown() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -108,7 +108,7 @@ public class QueenTest {
 	public void testUp() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -120,11 +120,11 @@ public class QueenTest {
 	public void testOutOfBoundsMove() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[0][7], "white");
+		Piece p = new Queen(test.chessBoard[0][7], "Белые");
 		
 		test.chessBoard[0][7].setOccupier(p);
 		
-		assertFalse("DiagOutOfBoundsMove", test.move(new Point(0, 7), new Point(0, 9)));
+		assertFalse("Диагональ, выход за пределы доски", test.move(new Point(0, 7), new Point(0, 9)));
 	
 	}
 	
@@ -132,13 +132,13 @@ public class QueenTest {
 	public void testAttackEnemy() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
-		Piece enemy = new Queen(test.chessBoard[3][5], "black");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
+		Piece enemy = new Queen(test.chessBoard[3][5], "Черные");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[3][5].setOccupier(enemy);
 		
-		assertTrue("AttackEnemy", test.move(new Point(3, 3), new Point(3, 5)));
+		assertTrue("Атака соперника", test.move(new Point(3, 3), new Point(3, 5)));
 	
 	}
 	
@@ -146,13 +146,13 @@ public class QueenTest {
 	public void testAttackFriendly() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Queen(test.chessBoard[3][3], "white");
-		Piece friendly = new Queen(test.chessBoard[3][5], "white");
+		Piece p = new Queen(test.chessBoard[3][3], "Белые");
+		Piece friendly = new Queen(test.chessBoard[3][5], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[3][5].setOccupier(friendly);
 		
-		assertFalse("AttackFriendly", test.move(new Point(3, 3), new Point(3, 5)));
+		assertFalse("Атака союзника", test.move(new Point(3, 3), new Point(3, 5)));
 	
 	}
 

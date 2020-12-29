@@ -24,7 +24,7 @@ public class KnightTest {
 	public void testUpRight1() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -36,7 +36,7 @@ public class KnightTest {
 	public void testUpRight2() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -48,7 +48,7 @@ public class KnightTest {
 	public void testDownRight1() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -60,7 +60,7 @@ public class KnightTest {
 	public void testDownRight2() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -72,7 +72,7 @@ public class KnightTest {
 	public void testDownLeft1() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -84,7 +84,7 @@ public class KnightTest {
 	public void testDownLeft2() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -96,7 +96,7 @@ public class KnightTest {
 	public void testUpLeft1() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -108,7 +108,7 @@ public class KnightTest {
 	public void testUpLeft2() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
@@ -120,7 +120,7 @@ public class KnightTest {
 	public void testOutOfBoundsMove() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[0][7], "white");
+		Piece p = new Knight(test.chessBoard[0][7], "Белые");
 		
 		test.chessBoard[0][7].setOccupier(p);
 		
@@ -132,8 +132,8 @@ public class KnightTest {
 	public void testAttackEnemy() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
-		Piece enemy = new Knight(test.chessBoard[4][5], "black");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
+		Piece enemy = new Knight(test.chessBoard[4][5], "Черные");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[4][5].setOccupier(enemy);
@@ -146,8 +146,8 @@ public class KnightTest {
 	public void testAttackFriendly() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Knight(test.chessBoard[3][3], "white");
-		Piece friendly = new Knight(test.chessBoard[4][5], "white");
+		Piece p = new Knight(test.chessBoard[3][3], "Белые");
+		Piece friendly = new Knight(test.chessBoard[4][5], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[4][5].setOccupier(friendly);

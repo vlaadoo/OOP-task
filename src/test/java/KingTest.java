@@ -19,94 +19,86 @@ public class KingTest {
 			}
 		}
 	}
-	
+
+
 	@Test
 	public void testDiagUpLeft() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new King(test.chessBoard[3][3], "white");
-		
+		Piece p = new King(test.chessBoard[3][3], "Белые");
+
 		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("DiagUpLeft", test.move(new Point(3, 3), new Point(2, 4)));
-	
+
+		assertTrue("Диагональ вверх влево", test.move(new Point(3, 3), new Point(2, 2)));
 	}
-	
+
 	@Test
 	public void testDiagUpRight() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new King(test.chessBoard[3][3], "white");
+		Piece p = new King(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("DiagUpRight", test.move(new Point(3, 3), new Point(4, 4)));
-	
+		assertTrue("Диагональ вверх вправо", test.move(new Point(3, 3), new Point(2, 4)));
 	}
-	
-	@Test
-	public void testDiagDownRight() {
-		Board test = new Board(false);
-		boardInit(test);
-		Piece p = new King(test.chessBoard[3][3], "white");
-		
-		test.chessBoard[3][3].setOccupier(p);
-		
-		assertTrue("DiagDownRight", test.move(new Point(3, 3), new Point(4, 2)));
-	
-	}
-	
+
 	@Test
 	public void testDiagDownLeft() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new King(test.chessBoard[3][3], "white");
+		Piece p = new King(test.chessBoard[3][3], "Белые");
+
+		test.chessBoard[3][3].setOccupier(p);
+
+		assertTrue("Диагональ вниз влево", test.move(new Point(3, 3), new Point(4, 2)));
+	}
+
+	@Test
+	public void testDiagDownRight() {
+		Board test = new Board(false);
+		boardInit(test);
+		Piece p = new King(test.chessBoard[3][3], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		
-		assertTrue("DiagDownLeft", test.move(new Point(3, 3), new Point(2, 2)));
-	
+		assertTrue("Диагональ вниз вправо", test.move(new Point(3, 3), new Point(4, 4)));
 	}
 	
 	@Test
 	public void testOutOfBoundsMove() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new King(test.chessBoard[0][7], "white");
+		Piece p = new King(test.chessBoard[0][7], "Белые");
 		
 		test.chessBoard[0][7].setOccupier(p);
 		
-		assertFalse("DiagOutOfBoundsMove", test.move(new Point(0, 7), new Point(1, 8)));
-	
+		assertFalse("Диагональ, выход за пределы доски", test.move(new Point(0, 7), new Point(1, 8)));
 	}
 	
 	@Test
 	public void testAttackEnemy() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new King(test.chessBoard[3][3], "white");
-		Piece enemy = new King(test.chessBoard[4][4], "black");
+		Piece p = new King(test.chessBoard[3][3], "Белые");
+		Piece enemy = new King(test.chessBoard[4][4], "Черные");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[4][4].setOccupier(enemy);
 		
-		assertTrue("AttackEnemy", test.move(new Point(3, 3), new Point(4, 4)));
-	
+		assertTrue("Атака соперника", test.move(new Point(3, 3), new Point(4, 4)));
 	}
 	
 	@Test
 	public void testAttackFriendly() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new King(test.chessBoard[3][3], "white");
-		Piece friendly = new King(test.chessBoard[4][4], "white");
+		Piece p = new King(test.chessBoard[3][3], "Белые");
+		Piece friendly = new King(test.chessBoard[4][4], "Белые");
 		
 		test.chessBoard[3][3].setOccupier(p);
 		test.chessBoard[4][4].setOccupier(friendly);
 		
-		assertFalse("AttackFriendly", test.move(new Point(3, 3), new Point(4, 4)));
-	
+		assertFalse("Атака союзника", test.move(new Point(3, 3), new Point(4, 4)));
 	}
-	
-
 }

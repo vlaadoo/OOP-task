@@ -17,8 +17,8 @@ public class GUI {
     private String side;
 
 
-    JPanel mainPanel, infoBox, scoreBox, turnBox, boardPanel, sideBox;
-    JLabel whiteScore, blackScore, turnTitle, turn, sideTitle, sideText;
+    JPanel mainPanel, infoBox, scoreBox, turnBox, boardPanel;
+    JLabel whiteScore, blackScore, turnTitle, turn;
     JMenuBar menuBar;
     JMenu gameOptions;
     JMenuItem restart, exit;
@@ -149,6 +149,7 @@ public class GUI {
         int result = JOptionPane.showConfirmDialog(frame, "Хотите перезапустить игру?", "Restart", JOptionPane.YES_NO_OPTION);
 
         if (result == JOptionPane.YES_OPTION) {
+            turnTitle.setText("Текущий ход: ");
             return true;
         }
         return false;

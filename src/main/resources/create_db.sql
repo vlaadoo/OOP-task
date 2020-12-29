@@ -1,1 +1,1 @@
-create table ChessGame (game_id bigint auto_increment, color varchar2(100));
+create table ChessGame (game_id bigint auto_increment, result varchar2(100), steps varchar2(100));

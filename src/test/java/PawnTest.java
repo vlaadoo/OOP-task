@@ -24,11 +24,11 @@ public class PawnTest {
 	public void testMove() {
 		Board test = new Board(false);
 		boardInit(test);
-		Piece p = new Pawn(test.chessBoard[0][1], "black");
-		Piece tryBeEaten = new Pawn(test.chessBoard[1][4], "black");
-		Piece toBeEaten = new Pawn(test.chessBoard[1][5], "white");
-		Piece cantMove = new Pawn(test.chessBoard[0][7], "black");
-		Piece blocker = new Pawn(test.chessBoard[1][6], "black");
+		Piece p = new Pawn(test.chessBoard[0][1], "Черные");
+		Piece tryBeEaten = new Pawn(test.chessBoard[1][4], "Черные");
+		Piece toBeEaten = new Pawn(test.chessBoard[1][5], "Белые");
+		Piece cantMove = new Pawn(test.chessBoard[0][7], "Черные");
+		Piece blocker = new Pawn(test.chessBoard[1][6], "Черные");
 		
 		test.chessBoard[0][1].setOccupier(p);
 		test.chessBoard[1][4].setOccupier(tryBeEaten);
