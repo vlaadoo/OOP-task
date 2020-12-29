@@ -82,7 +82,7 @@ public class Controller implements ActionListener {
             if (getSelectedSquare() == square) {
                 deselect(square);
             } else if (square.isHighlighted()) {
-                game.sendPacket(new Command(selectedSquare.getPosition().getLocation(), square.getPosition().getLocation()), false, false, false); //SEND THE PACKET
+                game.sendPacket(new Command(selectedSquare.getPosition().getLocation(), square.getPosition().getLocation()), false, false, false);
                 move(selectedSquare.getPosition(), square.getPosition());
 
                 if (getSelectedSquare() != null) {
@@ -98,7 +98,7 @@ public class Controller implements ActionListener {
     public void select(Square square) {
         square.setBackground(new Color(21, 190, 68));
 
-        setSelectedSquare(square); // определение выбранного квадрата
+        setSelectedSquare(square); // определяет выбранный квадрат
 
         List<Point> moves = square.getOccupier().getFilteredMoves(); // получение возможных ходов
 
@@ -114,7 +114,7 @@ public class Controller implements ActionListener {
     public void deselect(Square square) {
         square.setBackground(square.getOrigColor());
 
-        setSelectedSquare(null); // заменяет выбранный квадрат на null
+        setSelectedSquare(null); // сбрасывает выбранный квадрат
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -140,7 +140,7 @@ public class Controller implements ActionListener {
     public void testGameStatus(String turn) {
         String stepsCount = "Игра завершена за " + (int) Math.ceil(Board.steps/2) + " ходов!";
         if (model.getBoard().isCheckmate(turn)) { // если у игрока мат
-            // результат игры вносится в базу данных
+            // результат игры в БД
             try {
                 db.saveCheckmate(switchColor(turn) + " победили!", stepsCount);
             } catch (SQLException throwables) {
@@ -157,6 +157,7 @@ public class Controller implements ActionListener {
         }
 
         if (model.getBoard().isStalemate(turn)) { // Если пат
+            // результат игры в БД
             try {
                 db.saveStalemate("Игра закончилась ничьей!", stepsCount);
             } catch (SQLException throwables) {
