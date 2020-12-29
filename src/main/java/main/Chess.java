@@ -1,6 +1,6 @@
 package main;
 
-public class Chess extends Startup {
+public class Chess extends Launch {
 
     public static String color = "Белые";
 

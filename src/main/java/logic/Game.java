@@ -1,7 +1,7 @@
 package logic;
 
 import GUI.*;
-import main.Startup;
+import main.Launch;
 import main.Packet;
 import main.Chess;
 
@@ -9,29 +9,25 @@ public class Game {
     private Model model;
     private GUI gui;
     private Controller controller;
-    private Startup startup;
+    private Launch launch;
 
-    public Game(Startup startup) {
+    public Game(Launch launch) {
         model = new Model();
-        setConnect(startup);
-        if (startup.getClass() == Chess.class) {
-            gui = new GUI(model.getBoard(), this, "Белые");
-        }
+        setLaunch(launch);
+        gui = new GUI(model.getBoard(), this, "Белые");
         setController(new Controller(model, gui, this));
-
     }
 
-    // Создает пакет данных и отправляет его
     public void sendPacket(Command command, boolean restart, boolean restartConfirm, boolean exit) {
-        startup.sendPacket(new Packet(command, restart, restartConfirm, exit));
+        launch.sendPacket(new Packet(command, restart, restartConfirm, exit));
     }
 
     public void setController(Controller controller) {
         this.controller = controller;
     }
 
-    public void setConnect(Startup startup) {
-        this.startup = startup;
+    public void setLaunch(Launch launch) {
+        this.launch = launch;
     }
 
 }

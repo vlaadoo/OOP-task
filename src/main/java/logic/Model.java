@@ -23,6 +23,7 @@ public class Model {
 	public Model(int whiteScore, int blackScore) {
 		setWhiteScore(whiteScore);
 		setBlackScore(blackScore);
+		setBoard(new Board());
 		setCommands(new Stack<Command>());
 	}
 
