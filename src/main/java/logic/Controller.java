@@ -145,7 +145,7 @@ public class Controller implements ActionListener {
             try {
                 db.saveCheckmate(switchColor(turn) + " победили!", stepsCount);
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                throw new RuntimeException(throwables);
             }
             gui.notifyCheckmate(turn); // передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
             boolean restarted = gui.askRestart();
@@ -160,7 +160,7 @@ public class Controller implements ActionListener {
             try {
                 db.saveStalemate("Игра закончилась ничьей!", stepsCount);
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                throw new RuntimeException(throwables);
             }
             gui.notifyStalemate();
             gui.askRestart();
