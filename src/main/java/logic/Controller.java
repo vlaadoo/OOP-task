@@ -147,8 +147,7 @@ public class Controller implements ActionListener {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            gui.notifyCheckmate(turn);// передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
-//            gui.askRestart();
+            gui.notifyCheckmate(turn); // передает в GUI окно "шах и мат" и добавляет одно очко победившей стороне
             boolean restarted = gui.askRestart();
             if (restarted == true) {
                 game.sendPacket(null, true, false, false);

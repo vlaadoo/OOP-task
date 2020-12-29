@@ -126,7 +126,7 @@ public class Board extends JPanel {
         to.setOccupier(mover);   // удаление "съеденной" фигуры и установка атакующей фигуры на это место
         from.setOccupier(null);
 
-        check = isChecked(moverColor);  //check if the mover's king is in danger
+        check = isChecked(moverColor);  // проверка шаха на текущем игроке
 
         if (replaced == null) {
             to.setIcon(null);
@@ -153,12 +153,6 @@ public class Board extends JPanel {
         return getSquare(point.x, point.y);
     }
 
-    /**
-     * Determines whether a given side is in check or not
-     *
-     * @param color The side to be tested if it's king is in check or not
-     * @return True if the given side is in check, and false if it is not
-     */
     /*
      * Определяет наличие шаха на определенной стороне
      */
@@ -251,7 +245,6 @@ public class Board extends JPanel {
 
         if (check == true) {
             if (hasMoves == false) {
-                System.out.println(steps);
                 return true;
             }
         }

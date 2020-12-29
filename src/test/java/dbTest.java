@@ -7,7 +7,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class dbTest {
-
     DataBase db = new DataBase();
 
     @Test

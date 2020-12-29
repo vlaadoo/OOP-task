@@ -13,7 +13,7 @@ public class Game {
 
     public Game(Connect connect) {
         model = new Model();
-        setConnectable(connect);
+        setConnect(connect);
         if (connect.getClass() == Chess.class) {
             gui = new GUI(model.getBoard(), this, "Белые");
         }
@@ -21,7 +21,7 @@ public class Game {
 
     }
 
-    // Создает пакет для соединения и отправляет его
+    // Создает пакет данных и отправляет его
     public void sendPacket(Command command, boolean restart, boolean restartConfirm, boolean exit) {
         connect.sendPacket(new Packet(command, restart, restartConfirm, exit));
     }
@@ -30,7 +30,7 @@ public class Game {
         this.controller = controller;
     }
 
-    public void setConnectable(Connect connect) {
+    public void setConnect(Connect connect) {
         this.connect = connect;
     }
 

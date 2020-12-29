@@ -34,8 +34,8 @@ public class BoardTest {
 		test.chessBoard[5][0].setOccupier(threatenerRook);
 		
 		assertTrue(test.testSelfCheck(test.getSquare(1, 0), test.getSquare(1, 1)));
-		assertTrue(test.chessBoard[1][0].getOccupier().equals(moverRook));  //testPiece is moved back to original position
-		assertTrue(test.chessBoard[1][1].getOccupier() == null);			//position where the test pieces.Piece was tested is restored
+		assertTrue(test.chessBoard[1][0].getOccupier().equals(moverRook));
+		assertTrue(test.chessBoard[1][1].getOccupier() == null);
 	}
 
 	@Test
